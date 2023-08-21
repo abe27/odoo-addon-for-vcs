@@ -1,0 +1,1 @@
+# odoo-addon-for-vcs
