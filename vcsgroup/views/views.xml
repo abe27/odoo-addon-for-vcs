@@ -1,20 +1,17 @@
 <odoo>
     <data>
-        <!-- explicit list view definition -->
         <!-- Account Book -->
         <record id="vscgroup_account_book_list" model="ir.ui.view">
             <field name="name">Account Book</field>
             <field name="model">vcsgroup.account_book</field>
             <field name="arch" type="xml">
-                <sheet>
-                    <tree>
-                        <field name="account_book_id"/>
-                        <field name="account_book_code"/>
-                        <field name="name"/>
-                        <field name="description"/>
-                        <field name="is_active"/>
-                    </tree>
-                </sheet>
+                <tree>
+                    <field name="account_book_id"/>
+                    <field name="account_book_code"/>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="is_active"/>
+                </tree>
             </field>
         </record>
 
@@ -47,58 +44,103 @@
         </record>
         <!-- End Account Book -->
 
+        <!-- Whs -->
+        <record id="vcsgroup_whs_list" model="ir.ui.view">
+            <field name="name">Whouse</field>
+            <field name="model">vcsgroup.whs</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="whs_id"/>
+                    <field name="whs_code"/>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="is_active"/>
+                </tree>
+            </field>
+        </record>
 
-        <!--
-    <record model="ir.ui.view" id="vcsgroup.list">
-      <field name="name">vcsgroup list</field>
-      <field name="model">vcsgroup.vcsgroup</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
--->
+        <record id="vcsgroup_whs_form" model="ir.ui.view">
+            <field name="name">Whouse</field>
+            <field name="model">vcsgroup.whs</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="whs_id"/>
+                            <field name="whs_code"/>
+                        </group>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="is_active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
-        <!-- actions opening views on models -->
-        <!--
-    <record model="ir.actions.act_window" id="vcsgroup.action_window">
-      <field name="name">vcsgroup window</field>
-      <field name="res_model">vcsgroup.vcsgroup</field>
-      <field name="view_mode">tree,form</field>
-    </record>
--->
+        <record model="ir.actions.act_window" id="vscgroup_whouse_action">
+            <field name="name">จัดการข้อมูล Whouse</field>
+            <field name="res_model">vcsgroup.whs</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- End Whs -->
 
-        <!-- server action to the one above -->
-        <!--
-    <record model="ir.actions.server" id="vcsgroup.action_server">
-      <field name="name">vcsgroup server</field>
-      <field name="model_id" ref="model_vcsgroup_vcsgroup"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
-      </field>
-    </record>
--->
+        <!-- Unit -->
+        <record id="vcsgroup_unit_list" model="ir.ui.view">
+            <field name="name">Unit</field>
+            <field name="model">vcsgroup.unit</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="unit_id"/>
+                    <field name="unit_code"/>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="is_active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="vcsgroup_unit_form" model="ir.ui.view">
+            <field name="name">Unit</field>
+            <field name="model">vcsgroup.unit</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="unit_id"/>
+                            <field name="unit_code"/>
+                        </group>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="is_active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="vscgroup_unit_action">
+            <field name="name">จัดการข้อมูล Unit</field>
+            <field name="res_model">vcsgroup.unit</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- End Unit -->
 
         <!-- Top menu item -->
-
         <menuitem name="จัดการข้อมูล VCS Master Data" id="vcsgroup.menu_root"/>
-
         <!-- menu categories -->
-
         <menuitem name="จัดการข้อมูล" id="vcsgroup.menu_master_data" parent="vcsgroup.menu_root"/>
         <menuitem name="Menu 2" id="vcsgroup.menu_2" parent="vcsgroup.menu_root"/>
-
         <!-- actions -->
-
         <menuitem name="Account Booking" id="vcsgroup.menu_account_book" sequence="0" parent="vcsgroup.menu_master_data" action="vscgroup_account_book_action"/>
+        <menuitem id="vcsgroup.menu_whs" name="Whouse" sequence="1" parent="vcsgroup.menu_master_data" action="vscgroup_whouse_action" />
+        <menuitem id="vcsgroup.menu_unit" name="Unit" sequence="2" parent="vcsgroup.menu_master_data" action="vscgroup_unit_action" />
         <!-- <menuitem name="Server to list" id="vcsgroup" parent="vcsgroup.menu_2" action="vcsgroup.action_server"/> -->
 
     </data>

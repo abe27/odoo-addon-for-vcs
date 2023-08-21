@@ -34,7 +34,7 @@ class AccountBook(models.Model):
             domain = [('account_book_id', '=', rec.account_book_id)]
             count = self.sudo().search_count(domain)
             
-            if count > 1:
+            if count > 0:
                 raise ValidationError(("The ID should be unique"))
 
 
@@ -42,10 +42,8 @@ class Corporation(models.Model):
     _name = 'vcsgroup.corporation'
     _description = 'vcsgroup.corporation'
 
-    corporation_id = fields.Char(size=8,
-                                 required=True, string="ID")
-    corporation_code = fields.Char(size=15,
-                                   required=True, string="Code")
+    corporation_id = fields.Char(size=8, required=True, string="ID")
+    corporation_code = fields.Char(size=15, required=True, string="Code")
     name = fields.Char(size=50, string="Name", required=True)
     description = fields.Text(string="Description")
     tax_id = fields.Char(size=25, string="Tax ID")
@@ -53,6 +51,15 @@ class Corporation(models.Model):
     tel_no = fields.Char(size=50, string="Tel. No.")
     fax_no = fields.Char(size=50, string="Fax No.")
     is_active = fields.Boolean(string="Active", default=False)
+
+    @api.constrains('corporation_id')
+    def _check_registration_no(self):
+        for rec in self:
+            domain = [('corporation_id', '=', rec.corporation_id)]
+            count = self.sudo().search_count(domain)
+            
+            if count > 0:
+                raise ValidationError(("The ID should be unique"))
 
 
 class Customer(models.Model):
@@ -82,13 +89,25 @@ class Whs(models.Model):
     description = fields.Text(string="Description")
     is_active = fields.Boolean(string="Active", default=False)
 
+    @api.constrains('whs_id')
+    def _check_registration_no(self):
+        for rec in self:
+            domain = [('whs_id', '=', rec.whs_id)]
+            count = self.sudo().search_count(domain)
+            
+            if count > 0:
+                raise ValidationError(("The ID should be unique"))
+
+
 
 class Unit(models.Model):
     _name = 'vcsgroup.unit'
     _description = 'vcsgroup.unit'
 
-    unit_id = fields.Char(size=15,
+    unit_id = fields.Char(size=8,
                           required=True, string="ID")
+    unit_code = fields.Char(size=15,
+                          required=True, string="CODE")
     name = fields.Char(size=50, string="Name", required=True)
     description = fields.Text(string="Description")
     is_active = fields.Boolean(string="Active", default=False)

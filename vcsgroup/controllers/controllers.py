@@ -30,7 +30,7 @@ class VcsGroup(http.Controller):
     @http.route('/api/vcsgroup/accbook', auth='public', csrf=False, website=False, type="json", methods=['GET', 'POST'])
     def account_books(self, **kw):
         # if method is POST
-        print(kw)
+        # print(kw)
         if http.request.httprequest.method == 'POST':
             data = {
                 "account_book_id":  kw["account_book_id"],
@@ -41,9 +41,12 @@ class VcsGroup(http.Controller):
             }
 
             try:
-                obj = http.request.env["vcsgroup.account_book"].sudo().create([data])
-                return obj.id
-            
+                id = http.request.env["vcsgroup.account_book"].sudo().search([('account_book_id', '=', kw["account_book_id"])])
+                if len(id) == 0:
+                    obj = http.request.env["vcsgroup.account_book"].sudo().create([data])
+                    return obj.id
+                
+                return id
             except Exception as e:
                 print(e)
                 pass
@@ -62,6 +65,96 @@ class VcsGroup(http.Controller):
             data.append({
                 "account_book_id": a.account_book_id,
                 "account_book_code": a.account_book_code,
+                "name": a.name,
+                "description": a.description,
+                "is_active": a.is_active,
+            })
+
+        return data
+
+    @http.route('/api/vcsgroup/whs', auth='public', csrf=False, website=False, type="json", methods=['GET', 'POST'])
+    def whs(self, **kw):
+        # if method is POST
+        # print(kw)
+        if http.request.httprequest.method == 'POST':
+            data = {
+                "whs_id":  kw["whs_id"],
+                "whs_code": kw["whs_code"],
+                "name": kw["name"],
+                "description": kw["description"],
+                "is_active": kw["is_active"],
+            }
+
+            try:
+                id = http.request.env["vcsgroup.whs"].sudo().search([('whs_id', '=', kw["whs_id"])])
+                if len(id) == 0:
+                    obj = http.request.env["vcsgroup.whs"].sudo().create([data])
+                    return obj.id
+                
+                return id
+            except Exception as e:
+                print(e)
+                pass
+
+            return data
+
+        # if method is GET
+        if len(kw) > 0:
+            print(kw['id'])
+
+        # http.request.env["vcsgroup.account_book"].sudo().search([('id', '=', kw['id'])])
+        accbook = http.request.env["vcsgroup.whs"].sudo().search([])
+
+        data = []
+        for a in accbook:
+            data.append({
+                "whs_id": a.whs_id,
+                "whs_code": a.whs_code,
+                "name": a.name,
+                "description": a.description,
+                "is_active": a.is_active,
+            })
+
+        return data
+    
+    @http.route('/api/vcsgroup/unit', auth='public', csrf=False, website=False, type="json", methods=['GET', 'POST'])
+    def unit(self, **kw):
+        # if method is POST
+        # print(kw)
+        if http.request.httprequest.method == 'POST':
+            data = {
+                "unit_id":  kw["unit_id"],
+                "unit_code": kw["unit_code"],
+                "name": kw["name"],
+                "description": kw["description"],
+                "is_active": kw["is_active"],
+            }
+
+            try:
+                id = http.request.env["vcsgroup.unit"].sudo().search([('unit_id', '=', kw["unit_id"])])
+                if len(id) == 0:
+                    obj = http.request.env["vcsgroup.unit"].sudo().create([data])
+                    return obj.id
+                
+                return id
+            except Exception as e:
+                print(e)
+                pass
+
+            return data
+
+        # if method is GET
+        if len(kw) > 0:
+            print(kw['id'])
+
+        # http.request.env["vcsgroup.account_book"].sudo().search([('id', '=', kw['id'])])
+        accbook = http.request.env["vcsgroup.unit"].sudo().search([])
+
+        data = []
+        for a in accbook:
+            data.append({
+                "unit_id": a.unit_id,
+                "unit_code": a.unit_code,
                 "name": a.name,
                 "description": a.description,
                 "is_active": a.is_active,
