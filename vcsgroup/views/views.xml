@@ -1,7 +1,54 @@
 <odoo>
-  <data>
-    <!-- explicit list view definition -->
-<!--
+    <data>
+        <!-- explicit list view definition -->
+        <!-- Account Book -->
+        <record id="vscgroup_account_book_list" model="ir.ui.view">
+            <field name="name">Account Book</field>
+            <field name="model">vcsgroup.account_book</field>
+            <field name="arch" type="xml">
+                <sheet>
+                    <tree>
+                        <field name="account_book_id"/>
+                        <field name="account_book_code"/>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="is_active"/>
+                    </tree>
+                </sheet>
+            </field>
+        </record>
+
+        <record id="vscgroup_account_book_form" model="ir.ui.view">
+            <field name="name">Account Book</field>
+            <field name="model">vcsgroup.account_book</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group name="name" string="Infomation">
+                            <field name="account_book_id"/>
+                            <field name="account_book_code"/>
+                        </group>
+                        <group name="name" string="Detail">
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="is_active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="vscgroup_account_book_action">
+            <field name="name">จัดการข้อมูล Account Book</field>
+            <field name="res_model">vcsgroup.account_book</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- End Account Book -->
+
+
+        <!--
     <record model="ir.ui.view" id="vcsgroup.list">
       <field name="name">vcsgroup list</field>
       <field name="model">vcsgroup.vcsgroup</field>
@@ -15,8 +62,8 @@
     </record>
 -->
 
-    <!-- actions opening views on models -->
-<!--
+        <!-- actions opening views on models -->
+        <!--
     <record model="ir.actions.act_window" id="vcsgroup.action_window">
       <field name="name">vcsgroup window</field>
       <field name="res_model">vcsgroup.vcsgroup</field>
@@ -24,8 +71,8 @@
     </record>
 -->
 
-    <!-- server action to the one above -->
-<!--
+        <!-- server action to the one above -->
+        <!--
     <record model="ir.actions.server" id="vcsgroup.action_server">
       <field name="name">vcsgroup server</field>
       <field name="model_id" ref="model_vcsgroup_vcsgroup"/>
@@ -40,21 +87,19 @@
     </record>
 -->
 
-    <!-- Top menu item -->
-<!--
-    <menuitem name="vcsgroup" id="vcsgroup.menu_root"/>
--->
-    <!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="vcsgroup.menu_1" parent="vcsgroup.menu_root"/>
-    <menuitem name="Menu 2" id="vcsgroup.menu_2" parent="vcsgroup.menu_root"/>
--->
-    <!-- actions -->
-<!--
-    <menuitem name="List" id="vcsgroup.menu_1_list" parent="vcsgroup.menu_1"
-              action="vcsgroup.action_window"/>
-    <menuitem name="Server to list" id="vcsgroup" parent="vcsgroup.menu_2"
-              action="vcsgroup.action_server"/>
--->
-  </data>
+        <!-- Top menu item -->
+
+        <menuitem name="จัดการข้อมูล VCS Master Data" id="vcsgroup.menu_root"/>
+
+        <!-- menu categories -->
+
+        <menuitem name="จัดการข้อมูล" id="vcsgroup.menu_master_data" parent="vcsgroup.menu_root"/>
+        <menuitem name="Menu 2" id="vcsgroup.menu_2" parent="vcsgroup.menu_root"/>
+
+        <!-- actions -->
+
+        <menuitem name="Account Booking" id="vcsgroup.menu_account_book" sequence="0" parent="vcsgroup.menu_master_data" action="vscgroup_account_book_action"/>
+        <!-- <menuitem name="Server to list" id="vcsgroup" parent="vcsgroup.menu_2" action="vcsgroup.action_server"/> -->
+
+    </data>
 </odoo>
