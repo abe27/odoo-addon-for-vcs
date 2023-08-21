@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# from odoo import models, fields, api
+from odoo import models, fields, api
 
 
 # class vcsgroup(models.Model):
@@ -16,3 +16,133 @@
 #     def _value_pc(self):
 #         for record in self:
 #             record.value2 = float(record.value) / 100
+
+class AccountBook(models.Model):
+    _name = 'vcsgroup.account_book'
+    _description = 'vcsgroup.account_book'
+
+    account_book_id = fields.Char(size=8, unique=True,
+                          required=True, string="ID")
+    account_book_code = fields.Char(size=2, unique=True,
+                          required=True, string="Code")
+    name = fields.Char(size=50, string="Name", required=True)
+    description = fields.Text(string="Description")
+    is_active = fields.Boolean(string="Active", default=False)
+
+class Corporation(models.Model):
+    _name = 'vcsgroup.corporation'
+    _description = 'vcsgroup.corporation'
+
+    corporation_id = fields.Char(size=8, unique=True,
+                                  required=True, string="ID")
+    corporation_code = fields.Char(size=15, unique=True,
+                                  required=True, string="Code")
+    name = fields.Char(size=50, string="Name", required=True)
+    description = fields.Text(string="Description")
+    tax_id = fields.Char(size=25, string="Tax ID")
+    address = fields.Text(string="Address")
+    tel_no = fields.Char(size=50,string="Tel. No.")
+    fax_no = fields.Char(size=50,string="Fax No.")
+    is_active = fields.Boolean(string="Active", default=False)
+
+class Customer(models.Model):
+    _name = 'vcsgroup.customer'
+    _description = 'vcsgroup.customer'
+
+    customer_id = fields.Char(size=15, unique=True,
+                              required=True, string="ID")
+    name = fields.Char(size=50, string="Name", required=True)
+    description = fields.Text(string="Description")
+    tax_id = fields.Char(size=25, string="Tax ID")
+    address = fields.Text(string="Address")
+    tel_no = fields.Char(size=50,string="Tel. No.")
+    fax_no = fields.Char(size=50,string="Fax No.")
+    is_active = fields.Boolean(string="Active", default=False)
+
+class Whs(models.Model):
+    _name = 'vcsgroup.whs'
+    _description = 'vcsgroup.whs'
+
+    whs_id = fields.Char(size=8, unique=True,
+                          required=True, string="ID")
+    whs_code = fields.Char(size=15, unique=True,
+                          required=True, string="Code")
+    name = fields.Char(size=50, string="Name", required=True)
+    description = fields.Text(string="Description")
+    is_active = fields.Boolean(string="Active", default=False)
+
+class Unit(models.Model):
+    _name = 'vcsgroup.unit'
+    _description = 'vcsgroup.unit'
+
+    unit_id = fields.Char(size=15, unique=True,
+                          required=True, string="ID")
+    name = fields.Char(size=50, string="Name", required=True)
+    description = fields.Text(string="Description")
+    is_active = fields.Boolean(string="Active", default=False)
+
+class OrderStep(models.Model):
+    _name = 'vcsgroup.oder_step'
+    _description = 'vcsgroup.oder_step'
+
+    step_id = fields.Char(size=15, unique=True,
+                          required=True, string="ID")
+    name = fields.Char(size=50, string="Name", required=True)
+    description = fields.Text(string="Description")
+    is_active = fields.Boolean(string="Active", default=False)
+
+class OrderType(models.Model):
+    _name = 'vcsgroup.oder_type'
+    _description = 'vcsgroup.oder_type'
+
+    order_type_id = fields.Char(size=15, unique=True,
+                          required=True, string="ID")
+    name = fields.Char(size=50, string="Name", required=True)
+    description = fields.Text(string="Description")
+    is_active = fields.Boolean(string="Active", default=False)
+
+class ProductType(models.Model):
+    _name = 'vcsgroup.product_type'
+    _description = 'vcsgroup.product_type'
+
+    product_type_id = fields.Char(size=1, unique=True,
+                          required=True, string="ID")
+    name = fields.Char(size=50, string="Name", required=True)
+    description = fields.Text(string="Description")
+    is_active = fields.Boolean(string="Active", default=False)
+
+class Product(models.Model):
+    _name = 'vcsgroup.product'
+    _description = 'vcsgroup.product'
+
+    product_id = fields.Char(size=25, unique=True,
+                              required=True, string="ID")
+    name = fields.Char(size=50, string="Name", required=True)
+    description = fields.Text(string="Description")
+    is_active = fields.Boolean(string="Active", default=False)
+
+
+class ProductGroup(models.Model):
+    _name = 'vcsgroup.product_group'
+    _description = 'vcsgroup.product_group'
+
+    product_type_id = fields.Many2one('vcsgroup.type', string="Product Type ID")
+    product_id = fields.Many2one('vcsgroup.product', string="Product ID")
+    unit_id = fields.Many2one('vcsgroup.unit', string="Unit ID")
+    whs_id = fields.Many2one('vcsgroup.whs', string="WHS ID")
+    price = fields.Float(string="Price", default="0.0")
+    is_active = fields.Boolean(string="Active", default=False)
+
+class Booking(models.Model):
+    _name = 'vcsgroup.booking'
+    _description = 'vcsgroup.booking'
+
+    ref_type_id = fields.Many2one('vcsgroup.oder_type', string="Order Type ID")
+    booking_id = fields.Char(size=8, unique=True, required=True, string="ID")
+    booking_code = fields.Char(size=15, required=True, string="CODE")
+    prefix = fields.Char(size=15, string="Prefix")
+    name = fields.Char(string="Name", required=True)
+    description = fields.Text(string="Description")
+    from_whs_id = fields.Many2one('vcsgroup.whs', string="From WHS ID")
+    to_whs_id = fields.Many2one('vcsgroup.whs', string="To WHS ID")
+    is_active = fields.Boolean(string="Active", default=False)
