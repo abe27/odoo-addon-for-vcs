@@ -114,8 +114,8 @@ class Unit(models.Model):
 
 
 class OrderStep(models.Model):
-    _name = 'vcsgroup.oder_step'
-    _description = 'vcsgroup.oder_step'
+    _name = 'vcsgroup.order_step'
+    _description = 'vcsgroup.order_step'
 
     step_id = fields.Char(size=15,
                           required=True, string="ID")
@@ -125,8 +125,8 @@ class OrderStep(models.Model):
 
 
 class OrderType(models.Model):
-    _name = 'vcsgroup.oder_type'
-    _description = 'vcsgroup.oder_type'
+    _name = 'vcsgroup.order_type'
+    _description = 'vcsgroup.order_type'
 
     order_type_id = fields.Char(size=15,
                                 required=True, string="ID")
@@ -174,7 +174,7 @@ class Booking(models.Model):
     _name = 'vcsgroup.booking'
     _description = 'vcsgroup.booking'
 
-    ref_type_id = fields.Many2one('vcsgroup.oder_type', string="Order Type ID")
+    ref_type_id = fields.Many2one('vcsgroup.order_type', string="Order Type ID")
     booking_id = fields.Char(size=8,  required=True, string="ID")
     booking_code = fields.Char(size=15, required=True, string="CODE")
     prefix = fields.Char(size=15, string="Prefix")

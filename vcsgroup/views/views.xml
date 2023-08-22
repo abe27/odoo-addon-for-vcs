@@ -132,6 +132,48 @@
         </record>
         <!-- End Unit -->
 
+        <!-- Order Step -->
+        <record id="vcsgroup_order_step_list" model="ir.ui.view">
+            <field name="name">Order Step</field>
+            <field name="model">vcsgroup.order_step</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="step_id"/>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="is_active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="vcsgroup_order_step_form" model="ir.ui.view">
+            <field name="name">Order Step</field>
+            <field name="model">vcsgroup.order_step</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="step_id"/>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="is_active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="vscgroup_order_step_action">
+            <field name="name">จัดการข้อมูล Order step</field>
+            <field name="res_model">vcsgroup.order_step</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- End Order Step -->
+
+
+
         <!-- Top menu item -->
         <menuitem name="จัดการข้อมูล VCS Master Data" id="vcsgroup.menu_root"/>
         <!-- menu categories -->
@@ -141,6 +183,7 @@
         <menuitem name="Account Booking" id="vcsgroup.menu_account_book" sequence="0" parent="vcsgroup.menu_master_data" action="vscgroup_account_book_action"/>
         <menuitem id="vcsgroup.menu_whs" name="Whouse" sequence="1" parent="vcsgroup.menu_master_data" action="vscgroup_whouse_action" />
         <menuitem id="vcsgroup.menu_unit" name="Unit" sequence="2" parent="vcsgroup.menu_master_data" action="vscgroup_unit_action" />
+        <menuitem id="vcsgroup.menu_order_step" name="Order Step" sequence="3" parent="vcsgroup.menu_master_data" action="vscgroup_order_step_action" />
         <!-- <menuitem name="Server to list" id="vcsgroup" parent="vcsgroup.menu_2" action="vcsgroup.action_server"/> -->
 
     </data>
