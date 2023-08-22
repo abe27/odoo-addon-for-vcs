@@ -293,6 +293,50 @@
         </record>
         <!-- End Product -->
 
+        <!-- Product Group -->
+        <record id="vcsgroup_product_group_list" model="ir.ui.view">
+            <field name="name">Product Group</field>
+            <field name="model">vcsgroup.product_group</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="product_type_id"/>
+                    <field name="product_id"/>
+                    <field name="unit_id"/>
+                    <field name="whs_id"/>
+                    <field name="price"/>
+                    <field name="is_active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="vcsgroup_product_group_form" model="ir.ui.view">
+            <field name="name">Product</field>
+            <field name="model">vcsgroup.product_group</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="product_type_id"/>
+                            <field name="product_id"/>
+                            <field name="unit_id"/>
+                            <field name="whs_id"/>
+                            <field name="price"/>
+                        </group>
+                        <group>
+                            <field name="is_active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="vscgroup_product_group_action">
+            <field name="name">จัดการข้อมูล Product Type</field>
+            <field name="res_model">vcsgroup.product_group</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- End Product Group -->
+
 
 
         <!-- Top menu item -->
@@ -308,6 +352,7 @@
         <menuitem id="vcsgroup.menu_order_type" name="Order Type" sequence="4" parent="vcsgroup.menu_master_data" action="vscgroup_order_type_action" />
         <menuitem id="vcsgroup.menu_product_type" name="Product Type" sequence="5" parent="vcsgroup.menu_master_data" action="vscgroup_product_type_action" />
         <menuitem id="vcsgroup.menu_product" name="Product" sequence="6" parent="vcsgroup.menu_master_data" action="vscgroup_product_action" />
+        <menuitem id="vcsgroup.menu_product_group" name="Product Group" sequence="7" parent="vcsgroup.menu_master_data" action="vscgroup_product_group_action" />
         <!-- <menuitem name="Server to list" id="vcsgroup" parent="vcsgroup.menu_2" action="vcsgroup.action_server"/> -->
 
     </data>
