@@ -336,15 +336,68 @@ class VcsGroup(http.Controller):
             print(kw['id'])
 
         # http.request.env["vcsgroup.account_book"].sudo().search([('id', '=', kw['id'])])
-        obj = http.request.env["vcsgroup.product"].sudo().search([])
+        obj = http.request.env["vcsgroup.product_group"].sudo().search([])
 
         data = []
         for a in obj:
-            data.append({
-                "code": a.product_id,
-                "name": a.name,
-                "description": a.description,
-                "is_active": a.is_active,
-            })
+            data.append(a)
+
+        return data
+    
+    @http.route('/api/vcsgroup/booking', auth='public', csrf=False, website=False, type="json", methods=['GET', 'POST'])
+    def booking(self, **kw):
+        # if method is POST
+        # print(kw)
+        if http.request.httprequest.method == 'POST':
+            data = {
+                "ref_type_id": "AJ",
+                "booking_id": "Eu4OM30K",
+                "booking_code": "0001",
+                "prefix": "AJ0001/",
+                "name": "1",
+                "description": "Adjust 1",
+                "from_whs_id": "Eu4OBY05",
+                "to_whs_id": "",
+                "is_active": "true"
+            }
+
+            product_type = http.request.env["vcsgroup.product_type"].sudo().search([('product_type_id', '=', kw["ref_type_id"])])
+            from_whs = http.request.env["vcsgroup.whs"].sudo().search([('whs_id', '=', kw["from_whs_id"])])
+            to_whs = http.request.env["vcsgroup.whs"].sudo().search([('whs_id', '=', kw["to_whs_id"])])
+
+            
+            try:
+                id = http.request.env["vcsgroup.booking"].sudo().search([('booking_id', '=', kw['booking_id']),('booking_code', '=', kw['booking_code'])])
+                if len(id) == 0:
+                    obj = http.request.env["vcsgroup.booking"].sudo().create([{
+                        "ref_type_id": product_type.id,
+                        "booking_id": kw['booking_id'],
+                        "booking_code": kw['booking_code'],
+                        "prefix": kw['prefix'],
+                        "name": kw['name'],
+                        "description": kw['description'],
+                        "from_whs_id": from_whs.id,
+                        "to_whs_id": to_whs.id,
+                        "is_active": kw['is_active'],
+                    }])
+                    return obj.id
+                
+                return id
+            except Exception as e:
+                print(e)
+                pass
+
+            return data
+
+        # if method is GET
+        if len(kw) > 0:
+            print(kw['id'])
+
+        # http.request.env["vcsgroup.account_book"].sudo().search([('id', '=', kw['id'])])
+        obj = http.request.env["vcsgroup.booking"].sudo().search([])
+
+        data = []
+        for a in obj:
+            data.append(a)
 
         return data
