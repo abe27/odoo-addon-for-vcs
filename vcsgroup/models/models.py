@@ -125,6 +125,7 @@ class OrderStep(models.Model):
 
 
 class OrderType(models.Model):
+    ## RefType
     _name = 'vcsgroup.order_type'
     _description = 'vcsgroup.order_type'
 

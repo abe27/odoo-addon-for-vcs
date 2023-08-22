@@ -161,3 +161,190 @@ class VcsGroup(http.Controller):
             })
 
         return data
+    
+    @http.route('/api/vcsgroup/ordertype', auth='public', csrf=False, website=False, type="json", methods=['GET', 'POST'])
+    def order_type(self, **kw):
+        # if method is POST
+        # print(kw)
+        if http.request.httprequest.method == 'POST':
+            data = {
+                "order_type_id": kw["code"],
+                "name": kw["name"],
+                "description": kw["description"],
+                "is_active": kw["is_active"],
+            }
+
+            try:
+                id = http.request.env["vcsgroup.order_type"].sudo().search([('order_type_id', '=', kw["code"])])
+                if len(id) == 0:
+                    obj = http.request.env["vcsgroup.order_type"].sudo().create([data])
+                    return obj.id
+                
+                return id
+            except Exception as e:
+                print(e)
+                pass
+
+            return data
+
+        # if method is GET
+        if len(kw) > 0:
+            print(kw['id'])
+
+        # http.request.env["vcsgroup.account_book"].sudo().search([('id', '=', kw['id'])])
+        obj = http.request.env["vcsgroup.order_type"].sudo().search([])
+
+        data = []
+        for a in obj:
+            data.append({
+                "code": a.order_type_id,
+                "name": a.name,
+                "description": a.description,
+                "is_active": a.is_active,
+            })
+
+        return data
+    
+    @http.route('/api/vcsgroup/parttype', auth='public', csrf=False, website=False, type="json", methods=['GET', 'POST'])
+    def part_type(self, **kw):
+        # if method is POST
+        # print(kw)
+        if http.request.httprequest.method == 'POST':
+            data = {
+                "product_type_id": kw["code"],
+                "name": kw["name"],
+                "description": kw["description"],
+                "is_active": kw["is_active"],
+            }
+
+            try:
+                id = http.request.env["vcsgroup.product_type"].sudo().search([('product_type_id', '=', kw["code"])])
+                if len(id) == 0:
+                    obj = http.request.env["vcsgroup.product_type"].sudo().create([data])
+                    return obj.id
+                
+                return id
+            except Exception as e:
+                print(e)
+                pass
+
+            return data
+
+        # if method is GET
+        if len(kw) > 0:
+            print(kw['id'])
+
+        # http.request.env["vcsgroup.account_book"].sudo().search([('id', '=', kw['id'])])
+        obj = http.request.env["vcsgroup.product_type"].sudo().search([])
+
+        data = []
+        for a in obj:
+            data.append({
+                "code": a.product_type_id,
+                "name": a.name,
+                "description": a.description,
+                "is_active": a.is_active,
+            })
+
+        return data
+    
+    @http.route('/api/vcsgroup/product', auth='public', csrf=False, website=False, type="json", methods=['GET', 'POST'])
+    def product(self, **kw):
+        # if method is POST
+        # print(kw)
+        if http.request.httprequest.method == 'POST':
+            data = {
+                "product_id": kw["code"],
+                "name": kw["name"],
+                "description": kw["description"],
+                "is_active": kw["is_active"],
+            }
+
+            try:
+                id = http.request.env["vcsgroup.product"].sudo().search([('product_id', '=', kw["code"])])
+                if len(id) == 0:
+                    obj = http.request.env["vcsgroup.product"].sudo().create([data])
+                    return obj.id
+                
+                return id
+            except Exception as e:
+                print(e)
+                pass
+
+            return data
+
+        # if method is GET
+        if len(kw) > 0:
+            print(kw['id'])
+
+        # http.request.env["vcsgroup.account_book"].sudo().search([('id', '=', kw['id'])])
+        obj = http.request.env["vcsgroup.product"].sudo().search([])
+
+        data = []
+        for a in obj:
+            data.append({
+                "code": a.product_id,
+                "name": a.name,
+                "description": a.description,
+                "is_active": a.is_active,
+            })
+
+        return data
+    
+    @http.route('/api/vcsgroup/productlist', auth='public', csrf=False, website=False, type="json", methods=['GET', 'POST'])
+    def product_list(self, **kw):
+        # if method is POST
+        # print(kw)
+        if http.request.httprequest.method == 'POST':
+            data = {
+                "type": kw["type"],
+                "product": kw["product"],
+                "unit": kw["unit"],
+                "whs": kw["whs"],
+                "price": kw["price"],
+                "is_active": kw["is_active"],
+            }
+
+            product_type = http.request.env["vcsgroup.product_type"].sudo().search([('product_type_id', '=', kw["type"])])
+            product = http.request.env["vcsgroup.product"].sudo().search([('product_id', '=', kw["product"])])
+            unit = http.request.env["vcsgroup.unit"].sudo().search([('unit_id', '=', kw["unit"])])
+            whs = http.request.env["vcsgroup.whs"].sudo().search([('whs_code', '=', kw["whs"])])
+
+            
+            try:
+                id = http.request.env["vcsgroup.product_group"].sudo().search([('product_type_id', '=', product_type.id),('product_id', '=', product.id)])
+                if len(id) == 0:
+                    obj = http.request.env["vcsgroup.product_group"].sudo().create([{
+                        "product_type_id": product_type.id,
+                        "product_id": product.id,
+                        "unit_id": unit.id,
+                        "whs_id": whs.id,
+                        "price": kw["price"],
+                        "is_active": kw["is_active"],
+                    }])
+                    return obj.id
+                
+                return id
+            except Exception as e:
+                print(e)
+                pass
+
+            return data
+
+        # if method is GET
+        if len(kw) > 0:
+            print(kw['id'])
+
+        # http.request.env["vcsgroup.account_book"].sudo().search([('id', '=', kw['id'])])
+        obj = http.request.env["vcsgroup.product"].sudo().search([])
+
+        data = []
+        for a in obj:
+            data.append({
+                "code": a.product_id,
+                "name": a.name,
+                "description": a.description,
+                "is_active": a.is_active,
+            })
+
+        return data

@@ -172,6 +172,127 @@
         </record>
         <!-- End Order Step -->
 
+        <!-- Order Type -->
+        <record id="vcsgroup_order_type_list" model="ir.ui.view">
+            <field name="name">Order Type</field>
+            <field name="model">vcsgroup.order_type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="order_type_id"/>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="is_active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="vcsgroup_order_type_form" model="ir.ui.view">
+            <field name="name">Order Type</field>
+            <field name="model">vcsgroup.order_type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="order_type_id"/>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="is_active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="vscgroup_order_type_action">
+            <field name="name">จัดการข้อมูล Order Type</field>
+            <field name="res_model">vcsgroup.order_type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- End Order Type -->
+
+        <!-- Product Type -->
+        <record id="vcsgroup_product_type_list" model="ir.ui.view">
+            <field name="name">Product Type</field>
+            <field name="model">vcsgroup.product_type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="product_type_id"/>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="is_active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="vcsgroup_product_type_form" model="ir.ui.view">
+            <field name="name">Product Type</field>
+            <field name="model">vcsgroup.product_type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="product_type_id"/>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="is_active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="vscgroup_product_type_action">
+            <field name="name">จัดการข้อมูล Product Type</field>
+            <field name="res_model">vcsgroup.product_type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- End Product Type -->
+
+
+        <!-- Product -->
+        <record id="vcsgroup_product_list" model="ir.ui.view">
+            <field name="name">Product</field>
+            <field name="model">vcsgroup.product</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="product_id"/>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="is_active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="vcsgroup_product_form" model="ir.ui.view">
+            <field name="name">Product</field>
+            <field name="model">vcsgroup.product</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="is_active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="vscgroup_product_action">
+            <field name="name">จัดการข้อมูล Product Type</field>
+            <field name="res_model">vcsgroup.product</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- End Product -->
+
 
 
         <!-- Top menu item -->
@@ -184,6 +305,9 @@
         <menuitem id="vcsgroup.menu_whs" name="Whouse" sequence="1" parent="vcsgroup.menu_master_data" action="vscgroup_whouse_action" />
         <menuitem id="vcsgroup.menu_unit" name="Unit" sequence="2" parent="vcsgroup.menu_master_data" action="vscgroup_unit_action" />
         <menuitem id="vcsgroup.menu_order_step" name="Order Step" sequence="3" parent="vcsgroup.menu_master_data" action="vscgroup_order_step_action" />
+        <menuitem id="vcsgroup.menu_order_type" name="Order Type" sequence="4" parent="vcsgroup.menu_master_data" action="vscgroup_order_type_action" />
+        <menuitem id="vcsgroup.menu_product_type" name="Product Type" sequence="5" parent="vcsgroup.menu_master_data" action="vscgroup_product_type_action" />
+        <menuitem id="vcsgroup.menu_product" name="Product" sequence="6" parent="vcsgroup.menu_master_data" action="vscgroup_product_action" />
         <!-- <menuitem name="Server to list" id="vcsgroup" parent="vcsgroup.menu_2" action="vcsgroup.action_server"/> -->
 
     </data>
