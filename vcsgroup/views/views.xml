@@ -323,10 +323,20 @@
                             <field name="is_active"/>
                         </group>
                         <notebook>
-                            <page name="name" string="Test">
-                                <field name="unit_id"/>
-                                <field name="whs_id"/>
-                                <field name="price"/>
+                            <page name="name" string="Unit">
+                                <group>
+                                    <field name="unit_id"/>
+                                </group>
+                            </page>
+                            <page name="name" string="Whs">
+                                <group>
+                                    <field name="whs_id"/>
+                                </group>
+                            </page>
+                            <page name="name" string="Price">
+                                <group>
+                                    <field name="price"/>
+                                </group>
                             </page>
                         </notebook>
                     </sheet>
