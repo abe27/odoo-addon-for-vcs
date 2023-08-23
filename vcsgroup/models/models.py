@@ -36,6 +36,9 @@ class AccountBook(models.Model):
 
             if count > 0:
                 raise ValidationError(("The ID should be unique"))
+            
+    def send_mail_template(self):
+        print("Sending mail Click")
 
 
 class Corporation(models.Model):

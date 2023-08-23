@@ -318,13 +318,17 @@
                         <group>
                             <field name="product_type_id"/>
                             <field name="product_id"/>
-                            <field name="unit_id"/>
-                            <field name="whs_id"/>
-                            <field name="price"/>
                         </group>
                         <group>
                             <field name="is_active"/>
                         </group>
+                        <notebook>
+                            <page name="name" string="Test">
+                                <field name="unit_id"/>
+                                <field name="whs_id"/>
+                                <field name="price"/>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>
