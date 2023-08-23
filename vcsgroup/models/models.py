@@ -33,7 +33,7 @@ class AccountBook(models.Model):
         for rec in self:
             domain = [('account_book_id', '=', rec.account_book_id)]
             count = self.sudo().search_count(domain)
-            
+
             if count > 0:
                 raise ValidationError(("The ID should be unique"))
 
@@ -57,7 +57,7 @@ class Corporation(models.Model):
         for rec in self:
             domain = [('corporation_id', '=', rec.corporation_id)]
             count = self.sudo().search_count(domain)
-            
+
             if count > 0:
                 raise ValidationError(("The ID should be unique"))
 
@@ -94,10 +94,9 @@ class Whs(models.Model):
         for rec in self:
             domain = [('whs_id', '=', rec.whs_id)]
             count = self.sudo().search_count(domain)
-            
+
             if count > 0:
                 raise ValidationError(("The ID should be unique"))
-
 
 
 class Unit(models.Model):
@@ -107,7 +106,7 @@ class Unit(models.Model):
     unit_id = fields.Char(size=8,
                           required=True, string="ID")
     unit_code = fields.Char(size=15,
-                          required=True, string="CODE")
+                            required=True, string="CODE")
     name = fields.Char(size=50, string="Name", required=True)
     description = fields.Text(string="Description")
     is_active = fields.Boolean(string="Active", default=False)
@@ -125,7 +124,7 @@ class OrderStep(models.Model):
 
 
 class OrderType(models.Model):
-    ## RefType
+    # RefType
     _name = 'vcsgroup.order_type'
     _description = 'vcsgroup.order_type'
 
@@ -175,7 +174,8 @@ class Booking(models.Model):
     _name = 'vcsgroup.booking'
     _description = 'vcsgroup.booking'
 
-    ref_type_id = fields.Many2one('vcsgroup.order_type', string="Order Type ID")
+    ref_type_id = fields.Many2one(
+        'vcsgroup.order_type', string="Order Type ID")
     booking_id = fields.Char(size=8,  required=True, string="ID")
     booking_code = fields.Char(size=15, required=True, string="CODE")
     prefix = fields.Char(size=15, string="Prefix")

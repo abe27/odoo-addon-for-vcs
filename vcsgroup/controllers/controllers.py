@@ -41,11 +41,13 @@ class VcsGroup(http.Controller):
             }
 
             try:
-                id = http.request.env["vcsgroup.account_book"].sudo().search([('account_book_id', '=', kw["account_book_id"])])
+                id = http.request.env["vcsgroup.account_book"].sudo().search(
+                    [('account_book_id', '=', kw["account_book_id"])])
                 if len(id) == 0:
-                    obj = http.request.env["vcsgroup.account_book"].sudo().create([data])
+                    obj = http.request.env["vcsgroup.account_book"].sudo().create([
+                        data])
                     return obj.id
-                
+
                 return id
             except Exception as e:
                 print(e)
@@ -86,11 +88,13 @@ class VcsGroup(http.Controller):
             }
 
             try:
-                id = http.request.env["vcsgroup.whs"].sudo().search([('whs_id', '=', kw["whs_id"])])
+                id = http.request.env["vcsgroup.whs"].sudo().search(
+                    [('whs_id', '=', kw["whs_id"])])
                 if len(id) == 0:
-                    obj = http.request.env["vcsgroup.whs"].sudo().create([data])
+                    obj = http.request.env["vcsgroup.whs"].sudo().create([
+                        data])
                     return obj.id
-                
+
                 return id
             except Exception as e:
                 print(e)
@@ -116,7 +120,7 @@ class VcsGroup(http.Controller):
             })
 
         return data
-    
+
     @http.route('/api/vcsgroup/unit', auth='public', csrf=False, website=False, type="json", methods=['GET', 'POST'])
     def unit(self, **kw):
         # if method is POST
@@ -131,11 +135,13 @@ class VcsGroup(http.Controller):
             }
 
             try:
-                id = http.request.env["vcsgroup.unit"].sudo().search([('unit_id', '=', kw["unit_id"])])
+                id = http.request.env["vcsgroup.unit"].sudo().search(
+                    [('unit_id', '=', kw["unit_id"])])
                 if len(id) == 0:
-                    obj = http.request.env["vcsgroup.unit"].sudo().create([data])
+                    obj = http.request.env["vcsgroup.unit"].sudo().create([
+                        data])
                     return obj.id
-                
+
                 return id
             except Exception as e:
                 print(e)
@@ -161,7 +167,7 @@ class VcsGroup(http.Controller):
             })
 
         return data
-    
+
     @http.route('/api/vcsgroup/ordertype', auth='public', csrf=False, website=False, type="json", methods=['GET', 'POST'])
     def order_type(self, **kw):
         # if method is POST
@@ -175,11 +181,13 @@ class VcsGroup(http.Controller):
             }
 
             try:
-                id = http.request.env["vcsgroup.order_type"].sudo().search([('order_type_id', '=', kw["code"])])
+                id = http.request.env["vcsgroup.order_type"].sudo().search(
+                    [('order_type_id', '=', kw["code"])])
                 if len(id) == 0:
-                    obj = http.request.env["vcsgroup.order_type"].sudo().create([data])
+                    obj = http.request.env["vcsgroup.order_type"].sudo().create([
+                        data])
                     return obj.id
-                
+
                 return id
             except Exception as e:
                 print(e)
@@ -204,7 +212,7 @@ class VcsGroup(http.Controller):
             })
 
         return data
-    
+
     @http.route('/api/vcsgroup/parttype', auth='public', csrf=False, website=False, type="json", methods=['GET', 'POST'])
     def part_type(self, **kw):
         # if method is POST
@@ -218,11 +226,13 @@ class VcsGroup(http.Controller):
             }
 
             try:
-                id = http.request.env["vcsgroup.product_type"].sudo().search([('product_type_id', '=', kw["code"])])
+                id = http.request.env["vcsgroup.product_type"].sudo().search(
+                    [('product_type_id', '=', kw["code"])])
                 if len(id) == 0:
-                    obj = http.request.env["vcsgroup.product_type"].sudo().create([data])
+                    obj = http.request.env["vcsgroup.product_type"].sudo().create([
+                        data])
                     return obj.id
-                
+
                 return id
             except Exception as e:
                 print(e)
@@ -247,7 +257,7 @@ class VcsGroup(http.Controller):
             })
 
         return data
-    
+
     @http.route('/api/vcsgroup/product', auth='public', csrf=False, website=False, type="json", methods=['GET', 'POST'])
     def product(self, **kw):
         # if method is POST
@@ -261,11 +271,13 @@ class VcsGroup(http.Controller):
             }
 
             try:
-                id = http.request.env["vcsgroup.product"].sudo().search([('product_id', '=', kw["code"])])
+                id = http.request.env["vcsgroup.product"].sudo().search(
+                    [('product_id', '=', kw["code"])])
                 if len(id) == 0:
-                    obj = http.request.env["vcsgroup.product"].sudo().create([data])
+                    obj = http.request.env["vcsgroup.product"].sudo().create([
+                        data])
                     return obj.id
-                
+
                 return id
             except Exception as e:
                 print(e)
@@ -290,7 +302,7 @@ class VcsGroup(http.Controller):
             })
 
         return data
-    
+
     @http.route('/api/vcsgroup/productlist', auth='public', csrf=False, website=False, type="json", methods=['GET', 'POST'])
     def product_list(self, **kw):
         # if method is POST
@@ -305,14 +317,18 @@ class VcsGroup(http.Controller):
                 "is_active": kw["is_active"],
             }
 
-            product_type = http.request.env["vcsgroup.product_type"].sudo().search([('product_type_id', '=', kw["type"])])
-            product = http.request.env["vcsgroup.product"].sudo().search([('product_id', '=', kw["product"])])
-            unit = http.request.env["vcsgroup.unit"].sudo().search([('unit_id', '=', kw["unit"])])
-            whs = http.request.env["vcsgroup.whs"].sudo().search([('whs_code', '=', kw["whs"])])
+            product_type = http.request.env["vcsgroup.product_type"].sudo().search(
+                [('product_type_id', '=', kw["type"])])
+            product = http.request.env["vcsgroup.product"].sudo().search(
+                [('product_id', '=', kw["product"])])
+            unit = http.request.env["vcsgroup.unit"].sudo().search(
+                [('unit_id', '=', kw["unit"])])
+            whs = http.request.env["vcsgroup.whs"].sudo().search(
+                [('whs_code', '=', kw["whs"])])
 
-            
             try:
-                id = http.request.env["vcsgroup.product_group"].sudo().search([('product_type_id', '=', product_type.id),('product_id', '=', product.id)])
+                id = http.request.env["vcsgroup.product_group"].sudo().search(
+                    [('product_type_id', '=', product_type.id), ('product_id', '=', product.id)])
                 if len(id) == 0:
                     obj = http.request.env["vcsgroup.product_group"].sudo().create([{
                         "product_type_id": product_type.id,
@@ -323,7 +339,7 @@ class VcsGroup(http.Controller):
                         "is_active": kw["is_active"],
                     }])
                     return obj.id
-                
+
                 return id
             except Exception as e:
                 print(e)
@@ -343,7 +359,7 @@ class VcsGroup(http.Controller):
             data.append(a)
 
         return data
-    
+
     @http.route('/api/vcsgroup/booking', auth='public', csrf=False, website=False, type="json", methods=['GET', 'POST'])
     def booking(self, **kw):
         # if method is POST
@@ -361,13 +377,16 @@ class VcsGroup(http.Controller):
                 "is_active": "true"
             }
 
-            product_type = http.request.env["vcsgroup.product_type"].sudo().search([('product_type_id', '=', kw["ref_type_id"])])
-            from_whs = http.request.env["vcsgroup.whs"].sudo().search([('whs_id', '=', kw["from_whs_id"])])
-            to_whs = http.request.env["vcsgroup.whs"].sudo().search([('whs_id', '=', kw["to_whs_id"])])
+            product_type = http.request.env["vcsgroup.product_type"].sudo().search(
+                [('product_type_id', '=', kw["ref_type_id"])])
+            from_whs = http.request.env["vcsgroup.whs"].sudo().search(
+                [('whs_id', '=', kw["from_whs_id"])])
+            to_whs = http.request.env["vcsgroup.whs"].sudo().search(
+                [('whs_id', '=', kw["to_whs_id"])])
 
-            
             try:
-                id = http.request.env["vcsgroup.booking"].sudo().search([('booking_id', '=', kw['booking_id']),('booking_code', '=', kw['booking_code'])])
+                id = http.request.env["vcsgroup.booking"].sudo().search(
+                    [('booking_id', '=', kw['booking_id']), ('booking_code', '=', kw['booking_code'])])
                 if len(id) == 0:
                     obj = http.request.env["vcsgroup.booking"].sudo().create([{
                         "ref_type_id": product_type.id,
@@ -381,7 +400,7 @@ class VcsGroup(http.Controller):
                         "is_active": kw['is_active'],
                     }])
                     return obj.id
-                
+
                 return id
             except Exception as e:
                 print(e)
