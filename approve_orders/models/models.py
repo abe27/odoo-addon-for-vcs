@@ -26,7 +26,7 @@ class OrderHeader(models.Model):
     order_date = fields.Date(
         string="Date", default=lambda self: fields.Date.today())
     name = fields.Char(size=15, string="Order No.", required=True)
-    partner_id = fields.Many2one("res.partner.name", string="Partner")
+    partner_id = fields.Many2one("res.partner", string="Partner")
     item_count = fields.Integer(string="Item", default="0")
     vat_total = fields.Float(string="Vat.", default="0.0")
     order_step = fields.Many2one('vcsgroup.order_step', string="Step")
@@ -36,13 +36,6 @@ class OrderHeader(models.Model):
     is_sync = fields.Boolean(string="Is Sync", default=False)
     line_ids = fields.One2many("approve_orders.order_detail", "order_id", string="Order Detail")
 
-
-    # @api.onchange('partner_id')
-    # def _get_direction(self):
-    #     new_address=self.env['res.partner'].search([('id', '=', self.ceo.id)]).street or false
-    #     self.address=new_address
-
-
 class OrderDetail(models.Model):
     _name = 'approve_orders.order_detail'
     _description = 'approve_orders.order_detail'
@@ -50,4 +43,4 @@ class OrderDetail(models.Model):
     order_id = fields.Many2one('approve_orders.order_header', string="Order", required=True)
     product_id = fields.Many2one( 'vcsgroup.product_group', string="Product", required=True)
     quantity = fields.Float(string="Quantity", default="0.0")
-    unit_id = fields.Many2one( 'vcsgroup.unit', string="Product", required=True)
+    unit_id = fields.Many2one( 'vcsgroup.unit', string="Unit", required=True)

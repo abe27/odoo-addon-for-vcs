@@ -9,7 +9,6 @@
                     <field name="order_type_id" />
                     <field name="order_date" />
                     <field name="name" />
-                    <!-- <field name="partner_id" /> -->
                     <field name="item_count" />
                     <field name="vat_total" />
                     <field name="order_step" />
@@ -27,25 +26,29 @@
                 <form>
                     <sheet>
                         <group>
-                            <group>
+                            <group string="ข้อมูลทั่วไป">
                                 <field name="order_type_id" />
                                 <field name="order_date" />
+                                <field name="name" readonly="1" />
                             </group>
-                            <field name="name" />
-                            <!-- <field name="partner_id" /> -->
-                            <field name="item_count" />
-                            <field name="vat_total" />
-                            <field name="order_step" />
-                            <field name="remark" />
-                            <field name="is_approve" />
-                            <field name="is_sync" />
-                            <field name="line_ids">
-                                <tree>
-                                    <field name="product_id"/>
-                                    <field name="quantity"/>
-                                    <field name="unit_id"/>
-                                </tree>
-                            </field>
+                            <group>
+                                <field name="partner_id" />
+                            </group>
+                            <group>
+                                <field name="item_count" />
+                                <field name="vat_total" />
+                                <field name="order_step" />
+                                <field name="remark" />
+                                <field name="is_approve" />
+                                <field name="is_sync" />
+                                <field name="line_ids">
+                                    <tree>
+                                        <field name="product_id"/>
+                                        <field name="quantity"/>
+                                        <field name="unit_id"/>
+                                    </tree>
+                                </field>
+                            </group>
                         </group>
                     </sheet>
                 </form>
