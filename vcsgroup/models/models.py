@@ -172,6 +172,13 @@ class ProductGroup(models.Model):
     price = fields.Float(string="Price", default="0.0")
     is_active = fields.Boolean(string="Active", default=False)
 
+    def name_get(self):
+        result = None
+        for record in self:
+            result = record.product_id
+            
+        return result
+
 
 class Booking(models.Model):
     _name = 'vcsgroup.booking'

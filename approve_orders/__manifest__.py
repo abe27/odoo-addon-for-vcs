@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 {
     'name': "Approve Order",
-
     'author': "Taweechai Yuenyang",
     "email": "taweechai.yuenyang@outlook.com",
     'website': 'https://abe27.github.io',
