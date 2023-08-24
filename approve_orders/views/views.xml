@@ -25,22 +25,38 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet>
-                        <group>
-                            <group string="ข้อมูลทั่วไป">
-                                <field name="order_type_id" />
+                        <group string="ข้อมูลทั่วไป">
+                            <group>
                                 <field name="order_date" />
-                                <field name="name" readonly="1" />
+                            </group>
+                            <group>
+                                <field name="order_type_id" />
+                            </group>
+                            <group>
+                                <field name="name" />
                             </group>
                             <group>
                                 <field name="partner_id" />
                             </group>
+                        </group>
+                        <group name="name" string="ยอดรวม">
+                            <field name="item_count" />
+                            <field name="vat_total" />
+                            <field name="remark" />
+                        </group>
+                        <group name="name" string="สถานะ">
                             <group>
-                                <field name="item_count" />
-                                <field name="vat_total" />
                                 <field name="order_step" />
-                                <field name="remark" />
+                            </group>
+                            <group>
                                 <field name="is_approve" />
+                            </group>
+                            <group>
                                 <field name="is_sync" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="name" string="รายการสินค้า">
                                 <field name="line_ids">
                                     <tree>
                                         <field name="product_id"/>
@@ -48,8 +64,8 @@
                                         <field name="unit_id"/>
                                     </tree>
                                 </field>
-                            </group>
-                        </group>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>
