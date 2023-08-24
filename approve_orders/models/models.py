@@ -26,7 +26,7 @@ class OrderHeader(models.Model):
     order_date = fields.Date(
         string="Date", default=lambda self: fields.Date.today())
     name = fields.Char(size=15, string="Order No.", required=True)
-    partner_id = fields.Many2one("res.partner", string="Partner")
+    partner_id = fields.Many2one("res.partner.name", string="Partner")
     item_count = fields.Integer(string="Item", default="0")
     vat_total = fields.Float(string="Vat.", default="0.0")
     order_step = fields.Many2one('vcsgroup.order_step', string="Step")
@@ -34,7 +34,7 @@ class OrderHeader(models.Model):
     is_approve = fields.Selection([("0", "Open"), ("1", "In Process"), (
         "2", "Approved"), ("3", "Completed"), ("4", "Cancel")], string="Status")
     is_sync = fields.Boolean(string="Is Sync", default=False)
-    line_ids = fields.One2many("approve_orders.order_detail", "order_id")
+    line_ids = fields.One2many("approve_orders.order_detail", "order_id", string="Order Detail")
 
 
     # @api.onchange('partner_id')

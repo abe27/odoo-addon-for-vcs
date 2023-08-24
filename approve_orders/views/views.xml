@@ -25,29 +25,35 @@
             <field name="model">approve_orders.order_header</field>
             <field name="arch" type="xml">
                 <form>
-                    <field name="order_type_id" />
-                    <field name="order_date" />
-                    <field name="name" />
-                    <!-- <field name="partner_id" /> -->
-                    <field name="item_count" />
-                    <field name="vat_total" />
-                    <field name="order_step" />
-                    <field name="remark" />
-                    <field name="is_approve" />
-                    <field name="is_sync" />
-                    <field name="line_ids">
-                        <tree>
-                            <field name="product_id"/>
-                            <field name="quantity"/>
-                            <field name="unit_id"/>
-                        </tree>
-                    </field>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="order_type_id" />
+                                <field name="order_date" />
+                            </group>
+                            <field name="name" />
+                            <!-- <field name="partner_id" /> -->
+                            <field name="item_count" />
+                            <field name="vat_total" />
+                            <field name="order_step" />
+                            <field name="remark" />
+                            <field name="is_approve" />
+                            <field name="is_sync" />
+                            <field name="line_ids">
+                                <tree>
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                    <field name="unit_id"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
                 </form>
             </field>
         </record>
 
         <record model="ir.actions.act_window" id="approve_orders.order_header_action_window">
-            <field name="name">approve_orders window</field>
+            <field name="name">Order List</field>
             <field name="res_model">approve_orders.order_header</field>
             <field name="view_mode">tree,form</field>
         </record>

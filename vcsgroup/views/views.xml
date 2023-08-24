@@ -351,6 +351,62 @@
         </record>
         <!-- End Product Group -->
 
+        <!-- Booking -->
+        <record id="vcsgroup_booking_list" model="ir.ui.view">
+            <field name="name">Booking</field>
+            <field name="model">vcsgroup.booking</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="ref_type_id"/>
+                    <field name="booking_id"/>
+                    <field name="booking_code"/>
+                    <field name="prefix"/>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="from_whs_id"/>
+                    <field name="to_whs_id"/>
+                    <field name="is_active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="vcsgroup_booking_form" model="ir.ui.view">
+            <field name="name">Booking</field>
+            <field name="model">vcsgroup.booking</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="ref_type_id"/>
+                            <field name="booking_id"/>
+                            <field name="booking_code"/>
+                        </group>
+                        <group>
+                            <field name="prefix"/>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="from_whs_id"/>
+                            <field name="to_whs_id"/>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="is_active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="vscgroup_booking_action">
+            <field name="name">จัดการข้อมูล Booking</field>
+            <field name="res_model">vcsgroup.booking</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- End Booking -->
+
 
 
         <!-- Top menu item -->
@@ -367,7 +423,7 @@
         <menuitem id="vcsgroup.menu_product_type" name="Product Type" sequence="5" parent="vcsgroup.menu_master_data" action="vscgroup_product_type_action" />
         <menuitem id="vcsgroup.menu_product" name="Product" sequence="6" parent="vcsgroup.menu_master_data" action="vscgroup_product_action" />
         <menuitem id="vcsgroup.menu_product_group" name="Product Group" sequence="7" parent="vcsgroup.menu_master_data" action="vscgroup_product_group_action" />
+        <menuitem id="vcsgroup.menu_booking" name="Booking" sequence="8" parent="vcsgroup.menu_master_data" action="vscgroup_booking_action" />
         <!-- <menuitem name="Server to list" id="vcsgroup" parent="vcsgroup.menu_2" action="vcsgroup.action_server"/> -->
-
     </data>
 </odoo>
