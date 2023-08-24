@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_approve_orders_approve_orders,approve_orders.approve_orders,model_approve_orders_approve_orders,base.group_user,1,1,1,1
+access_approve_orders_order_header,approve_orders.order_header,model_approve_orders_order_header,base.group_user,1,1,1,1
+access_approve_orders_order_detail,approve_orders.order_detail,model_approve_orders_order_detail,base.group_user,1,1,1,1

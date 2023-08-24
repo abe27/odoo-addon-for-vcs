@@ -333,6 +333,7 @@ class VcsGroup(http.Controller):
                     obj = http.request.env["vcsgroup.product_group"].sudo().create([{
                         "product_type_id": product_type.id,
                         "product_id": product.id,
+                        "name": kw["product"],
                         "unit_id": unit.id,
                         "whs_id": whs.id,
                         "price": kw["price"],

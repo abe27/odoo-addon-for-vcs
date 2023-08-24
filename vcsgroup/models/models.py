@@ -167,17 +167,18 @@ class ProductGroup(models.Model):
     product_type_id = fields.Many2one(
         'vcsgroup.product_type', string="Product Type ID")
     product_id = fields.Many2one('vcsgroup.product', string="Product ID")
+    name = fields.Char(size=50, string="Name", required=True)
     unit_id = fields.Many2one('vcsgroup.unit', string="Unit ID")
     whs_id = fields.Many2one('vcsgroup.whs', string="WHS ID")
     price = fields.Float(string="Price", default="0.0")
     is_active = fields.Boolean(string="Active", default=False)
 
-    def name_get(self):
-        result = None
-        for record in self:
-            result = record.product_id
+    # def name_get(self):
+    #     result = None
+    #     for record in self:
+    #         result = record.id
             
-        return result
+    #     return result
 
 
 class Booking(models.Model):

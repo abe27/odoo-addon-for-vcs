@@ -1,60 +1,72 @@
 <odoo>
-  <data>
-    <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="approve_orders.list">
-      <field name="name">approve_orders list</field>
-      <field name="model">approve_orders.approve_orders</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
--->
+    <data>
+        <!-- Order Header -->
+        <record id="order_header_list" model="ir.ui.view">
+            <field name="name">Order Header</field>
+            <field name="model">approve_orders.order_header</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="order_type_id" />
+                    <field name="order_date" />
+                    <field name="name" />
+                    <!-- <field name="partner_id" /> -->
+                    <field name="item_count" />
+                    <field name="vat_total" />
+                    <field name="order_step" />
+                    <field name="remark" />
+                    <field name="is_approve" />
+                    <field name="is_sync" />
+                </tree>
+            </field>
+        </record>
 
-    <!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="approve_orders.action_window">
-      <field name="name">approve_orders window</field>
-      <field name="res_model">approve_orders.approve_orders</field>
-      <field name="view_mode">tree,form</field>
-    </record>
--->
+        <record id="order_header_form" model="ir.ui.view">
+            <field name="name">Order Header</field>
+            <field name="model">approve_orders.order_header</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="order_type_id" />
+                    <field name="order_date" />
+                    <field name="name" />
+                    <!-- <field name="partner_id" /> -->
+                    <field name="item_count" />
+                    <field name="vat_total" />
+                    <field name="order_step" />
+                    <field name="remark" />
+                    <field name="is_approve" />
+                    <field name="is_sync" />
+                    <field name="line_ids">
+                        <tree>
+                            <field name="product_id"/>
+                            <field name="quantity"/>
+                            <field name="unit_id"/>
+                        </tree>
+                    </field>
+                </form>
+            </field>
+        </record>
 
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="approve_orders.action_server">
-      <field name="name">approve_orders server</field>
-      <field name="model_id" ref="model_approve_orders_approve_orders"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
-      </field>
-    </record>
--->
+        <record model="ir.actions.act_window" id="approve_orders.order_header_action_window">
+            <field name="name">approve_orders window</field>
+            <field name="res_model">approve_orders.order_header</field>
+            <field name="view_mode">tree,form</field>
+        </record>
 
-    <!-- Top menu item -->
-<!--
-    <menuitem name="approve_orders" id="approve_orders.menu_root"/>
--->
-    <!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="approve_orders.menu_1" parent="approve_orders.menu_root"/>
-    <menuitem name="Menu 2" id="approve_orders.menu_2" parent="approve_orders.menu_root"/>
--->
-    <!-- actions -->
-<!--
-    <menuitem name="List" id="approve_orders.menu_1_list" parent="approve_orders.menu_1"
-              action="approve_orders.action_window"/>
-    <menuitem name="Server to list" id="approve_orders" parent="approve_orders.menu_2"
-              action="approve_orders.action_server"/>
--->
-  </data>
+        <!-- Order Header -->
+
+        <!-- Top menu item -->
+
+        <menuitem name="Confirm Order" id="approve_orders.menu_root"/>
+
+        <!-- menu categories -->
+
+        <menuitem name="จัดการข้อมูล" id="approve_orders.menu_1" parent="approve_orders.menu_root"/>
+        <!-- <menuitem name="Menu 2" id="approve_orders.menu_2" parent="approve_orders.menu_root"/> -->
+
+        <!-- actions -->
+
+        <menuitem name="รายการ Order" id="approve_orders.menu_1_list" parent="approve_orders.menu_1" action="approve_orders.order_header_action_window"/>
+        <!-- <menuitem name="Server to list" id="approve_orders" parent="approve_orders.menu_2" action="approve_orders.action_server"/> -->
+
+    </data>
 </odoo>
