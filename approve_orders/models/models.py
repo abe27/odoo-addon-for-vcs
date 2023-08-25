@@ -22,8 +22,7 @@ class OrderHeader(models.Model):
     _name = 'approve_orders.order_header'
     _description = 'approve_orders.order_header'
 
-    order_type_id = fields.Many2one(
-        'vcsgroup.order_type', string="Order Type", required=True)
+    order_type_id = fields.Many2one('vcsgroup.booking', string="Order Type", required=True)
     order_date = fields.Date(
         string="Date", default=lambda self: fields.Date.today())
     name = fields.Char(size=15, string="Order No.")
@@ -39,29 +38,51 @@ class OrderHeader(models.Model):
     line_ids = fields.One2many(
         "approve_orders.order_detail", "order_id", string="Order Detail")
     
+
+    # @api.multi
+    # def btn_show_dialog_box(self):
+    #     text = """Write your custom message here to show in dialog box"""
+    #     query ='delete from display_dialog_box'
+    #     self.env.cr.execute(query)
+    #     value = self.env['display.dialog.box'].sudo().create({'text':text})
+    #     return{
+    #         'type':'ir.actions.act_window',
+    #         'name':'Message',
+    #         'res_model':'display.dialog.box',
+    #         'view_type':'form',
+    #         'view_mode':'form',
+    #         'target':'new',
+    #         'res_id':value.id                
+    #     }
+
+    @api.model
+    def write(self, values):
+        print("Writing")
+        print(values)
+        res = super().write(values)
+        return res
+    
     @api.model
     def create(self, data):
-        # orderNo = data['name']
-        orderNo = f"ORD{data['order_date'].strftime('%Y%m%d')}"
-        print(orderNo)
-        # data['name'] = str(orderNo).upper()
-        dte = datetime.now()
+        dte = datetime.strptime(data['order_date'], '%Y-%m-%d')
+        ctnRecord = self.env['approve_orders.order_header'].search_count([('name', 'like', f"ORD{dte.strftime('%Y%m')[3:]}")]) 
+        orderNo = f"ORD{dte.strftime('%Y%m')[3:]}{'{0:05}'.format(ctnRecord + 1)}"
         data['name'] = orderNo
         data['item_count'] = len(data['line_ids'])
+        data['order_step'] = 1
+        data['is_approve'] = "0"
         result = super().create(data)
-        print(result)
         return result
     
     @api.onchange('line_ids')
     def onchange_line_ids(self):
-        print(self.line_ids)
         vatCount = 0
         for r in self.line_ids:
-            print(r['product_id']['price'])
             vatCount += float(r['product_id']['price'])
 
         self.vat_total = vatCount
         self.item_count = len(self.line_ids)
+        # self.line_ids = docs
 
     # @api.ondelete(self)
     # def ondelete_order_header(self):

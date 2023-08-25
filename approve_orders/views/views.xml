@@ -42,17 +42,17 @@
                         <group name="name" string="ยอดรวม">
                             <field name="item_count" readonly="1"/>
                             <field name="vat_total" readonly="1"/>
-                            <field name="remark" readonly="1"/>
+                            <field name="remark" />
                         </group>
                         <group name="name" string="สถานะ">
                             <group>
-                                <field name="order_step" />
+                                <field name="order_step" readonly="1"/>
                             </group>
                             <group>
-                                <field name="is_approve" />
+                                <field name="is_approve" readonly="1"/>
                             </group>
                             <group>
-                                <field name="is_sync" />
+                                <field name="is_sync" readonly="1"/>
                             </group>
                         </group>
                         <notebook>
