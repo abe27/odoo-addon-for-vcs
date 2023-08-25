@@ -17,7 +17,7 @@
     'version': '0.1',  # version คือ เวอร์ชันของโมดูล
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'vcsgroup','web'],
+    'depends': ['base', 'vcsgroup', 'web'],
 
     # always loaded
     'data': [
@@ -29,6 +29,16 @@
     'demo': [
         'demo/demo.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            # 'approve_orders/static/src/css/bootstrap.min.css',
+            'approve_orders/static/src/js/tree_button.js',
+        ],
+        'web.assets_qweb': [
+            'approve_orders/static/src/xml/tree_button.xml',
+        ],
+    },
+    "bootstrap": True,
     "application": True,
     'installable': True,  # installable คือ ระบุว่าโมดูลสามารถติดตั้งได้หรือไม่
     'auto_install': False,  # auto_install คือ ระบุว่าโมดูลจะติดตั้งโดยอัตโนมัติหรือไม่
