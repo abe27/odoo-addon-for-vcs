@@ -30,7 +30,7 @@
                 <form>
                     <header>
                         <div style="text-align:center">
-                            <button name="confirm" string="primary" class="btn-primary"/>
+                            <button name="btn_approve" string="primary" class="btn-primary" type="object" icon="fa-sticky-note-o" />
                             <button string="success" name="action_read_grabfood_api" class="btn-success" attrs="{'always_visible': True}" />
                             <button string="danger" name="action_read_grabfood_api" class="btn-danger" attrs="{'always_visible': True}" />
                             <button string="info" name="action_read_grabfood_api" class="btn-info" attrs="{'always_visible': True}" />

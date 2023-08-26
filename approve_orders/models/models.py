@@ -2,6 +2,7 @@
 
 from datetime import datetime
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 
 # class approve_orders(models.Model):
@@ -76,10 +77,23 @@ class OrderHeader(models.Model):
     
     @api.onchange('line_ids')
     def onchange_line_ids(self):
+        _id = []
         vatCount = 0
         for r in self.line_ids:
             vatCount += float(r['product_id']['price'])
+            if len(_id) > 0:
+                try:
+                    if _id.index(r['product_id']['id']):
+                        raise ValidationError(str('Product duplicate!'))
+                    
+                    print(f"Found Duplicate: {_id.index(r['product_id']['id'])}")
+                    
+                except ValueError:
+                    pass
+            
+            _id.append(r['product_id']['id'])
 
+        print(_id)
         self.vat_total = vatCount
         self.item_count = len(self.line_ids)
         # self.line_ids = docs
@@ -89,6 +103,9 @@ class OrderHeader(models.Model):
     #     # self.line_ids.unlink()
     #     pass
 
+    def btn_approve(self):
+        print(f"btn click to approve")
+
 
 
 class OrderDetail(models.Model):
@@ -97,10 +114,11 @@ class OrderDetail(models.Model):
 
     order_id = fields.Many2one('approve_orders.order_header', string="Order")
     product_id = fields.Many2one('vcsgroup.product_group', string="Product", required=True)
-    quantity = fields.Float(string="Quantity", default="0.0")
+    quantity = fields.Float(string="Quantity", default="1.0", required=True)
     price = fields.Float(string="Price", default="0.0")
     unit_id = fields.Many2one('vcsgroup.unit', string="Unit", required=True)
 
     @api.onchange('product_id')
     def onchange_product_id(self):
         self.price = float(self.product_id.price)
+        print(f"Change product_id: {self.product_id.id}")
