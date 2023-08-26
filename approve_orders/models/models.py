@@ -57,13 +57,6 @@ class OrderHeader(models.Model):
     #     }
 
     @api.model
-    def write(self, values):
-        print("Writing")
-        print(values)
-        res = super().write(values)
-        return res
-    
-    @api.model
     def create(self, data):
         dte = datetime.strptime(data['order_date'], '%Y-%m-%d')
         ctnRecord = self.env['approve_orders.order_header'].search_count([('name', 'like', f"ORD{dte.strftime('%Y%m')[3:]}")]) 
@@ -87,7 +80,7 @@ class OrderHeader(models.Model):
                         raise ValidationError(str('Product duplicate!'))
                     
                     print(f"Found Duplicate: {_id.index(r['product_id']['id'])}")
-                    
+
                 except ValueError:
                     pass
             
