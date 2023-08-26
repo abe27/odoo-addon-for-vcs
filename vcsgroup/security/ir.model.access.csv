@@ -5,7 +5,6 @@ access_vcsgroup_corporation,vcsgroup.corporation,model_vcsgroup_corporation,base
 access_vcsgroup_customer,vcsgroup.customer,model_vcsgroup_customer,base.group_user,1,1,1,1
 access_vcsgroup_whs,vcsgroup.whs,model_vcsgroup_whs,base.group_user,1,1,1,1
 access_vcsgroup_unit,vcsgroup.unit,model_vcsgroup_unit,base.group_user,1,1,1,1
-access_vcsgroup_order_step,vcsgroup.order_step,model_vcsgroup_order_step,base.group_user,1,1,1,1
 access_vcsgroup_order_type,vcsgroup.order_type,model_vcsgroup_order_type,base.group_user,1,1,1,1
 access_vcsgroup_product,vcsgroup.product,model_vcsgroup_product,base.group_user,1,1,1,1
 access_vcsgroup_product_group,vcsgroup.product_group,model_vcsgroup_product_group,base.group_user,1,1,1,1

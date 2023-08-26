@@ -132,46 +132,6 @@
         </record>
         <!-- End Unit -->
 
-        <!-- Order Step -->
-        <record id="vcsgroup_order_step_list" model="ir.ui.view">
-            <field name="name">Order Step</field>
-            <field name="model">vcsgroup.order_step</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <field name="step_id"/>
-                    <field name="name"/>
-                    <field name="description"/>
-                    <field name="is_active"/>
-                </tree>
-            </field>
-        </record>
-
-        <record id="vcsgroup_order_step_form" model="ir.ui.view">
-            <field name="name">Order Step</field>
-            <field name="model">vcsgroup.order_step</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <group>
-                            <field name="step_id"/>
-                            <field name="name"/>
-                            <field name="description"/>
-                        </group>
-                        <group>
-                            <field name="is_active"/>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-
-        <record model="ir.actions.act_window" id="vscgroup_order_step_action">
-            <field name="name">จัดการข้อมูล Order step</field>
-            <field name="res_model">vcsgroup.order_step</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-        <!-- End Order Step -->
-
         <!-- Order Type -->
         <record id="vcsgroup_order_type_list" model="ir.ui.view">
             <field name="name">Order Type</field>
