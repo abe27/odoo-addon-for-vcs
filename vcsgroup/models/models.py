@@ -101,7 +101,6 @@ class Whs(models.Model):
             if count > 0:
                 raise ValidationError(("The ID should be unique"))
 
-
 class Unit(models.Model):
     _name = 'vcsgroup.unit'
     _description = 'vcsgroup.unit'
@@ -113,18 +112,6 @@ class Unit(models.Model):
     name = fields.Char(size=50, string="Name", required=True)
     description = fields.Text(string="Description")
     is_active = fields.Boolean(string="Active", default=False)
-
-
-class OrderStep(models.Model):
-    _name = 'vcsgroup.order_step'
-    _description = 'vcsgroup.order_step'
-
-    step_id = fields.Char(size=15,
-                          required=True, string="ID")
-    name = fields.Char(size=50, string="Name", required=True)
-    description = fields.Text(string="Description")
-    is_active = fields.Boolean(string="Active", default=False)
-
 
 class OrderType(models.Model):
     # RefType
