@@ -31,7 +31,7 @@
                     <header>
                         <div class="d-flex justify-content-end">
                             <div class="p-2 bd-highlight">
-                                <button name="btn_approve" string="primary" class="btn-primary" icon="fa-sticky-note-o" />
+                                <button name="btn_approve" string="primary" class="btn-primary" icon="fa-sticky-note-o" type="action" />
                             </div>
                             <div class="p-2 bd-highlight">
                                 <button string="success" name="action_read_grabfood_api" class="btn-success" icon="fa-pencil" attrs="{'always_visible': True}" />

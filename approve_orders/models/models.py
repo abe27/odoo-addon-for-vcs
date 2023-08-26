@@ -119,4 +119,5 @@ class OrderDetail(models.Model):
     @api.onchange('product_id')
     def onchange_product_id(self):
         self.price = float(self.product_id.price)
+        print(f"Price: {float(self.product_id.price)}")
         print(f"Change product_id: {self.product_id.id}")
