@@ -30,8 +30,7 @@ class OrderHeader(models.Model):
     partner_id = fields.Many2one("res.partner", string="Partner")
     item_count = fields.Integer(string="Item", default="0")
     vat_total = fields.Float(string="Vat.", default="0.0")
-    order_step = fields.Many2one(
-        'vcsgroup.order_step', string="Step", default="None")
+    order_step = fields.Selection([("1", "None"), ("P", "Paid")], string="Step", default="1")
     remark = fields.Text(string="Remark", default="-")
     is_approve = fields.Selection([("0", "Open"), ("1", "In Process"), (
         "2", "Approved"), ("3", "Completed"), ("4", "Cancel")], string="Status", default="0")

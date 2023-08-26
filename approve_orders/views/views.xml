@@ -29,16 +29,23 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <div style="text-align:center">
-                            <button name="btn_approve" string="primary" class="btn-primary" type="object" icon="fa-sticky-note-o" />
-                            <button string="success" name="action_read_grabfood_api" class="btn-success" attrs="{'always_visible': True}" />
-                            <button string="danger" name="action_read_grabfood_api" class="btn-danger" attrs="{'always_visible': True}" />
-                            <button string="info" name="action_read_grabfood_api" class="btn-info" attrs="{'always_visible': True}" />
-                            <button string="oe_highlight" name="action_read_grabfood_api" class="oe_highlight" attrs="{'always_visible': True}" />
+                        <div class="d-flex justify-content-end">
+                            <div class="p-2 bd-highlight">
+                                <button name="btn_approve" string="primary" class="btn-primary" icon="fa-sticky-note-o" />
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <button string="success" name="action_read_grabfood_api" class="btn-success" icon="fa-pencil" attrs="{'always_visible': True}" />
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <button string="danger" name="action_read_grabfood_api" class="btn-danger" icon="fa-print" attrs="{'always_visible': True}" />
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <button string="info" name="action_read_grabfood_api" class="btn-info" attrs="{'always_visible': True}" />
+                            </div>
                         </div>
                     </header>
                     <sheet>
-                        <group string="ข้อมูลทั่วไป">
+                        <group string="name" name="name">
                             <group>
                                 <field name="order_date" class="form-control" />
                             </group>
@@ -49,7 +56,7 @@
                                 <field name="name" class="text-danger" readonly="1"/>
                             </group>
                             <group>
-                                <field name="partner_id"  class="form-control"/>
+                                <field name="partner_id" class="form-control"/>
                             </group>
                         </group>
                         <group name="name" string="ยอดรวม">
@@ -71,7 +78,7 @@
                         <notebook>
                             <page name="name" string="รายการสินค้า">
                                 <field name="line_ids">
-                                    <tree>
+                                    <tree string="my Tree" editable="top">
                                         <field name="product_id"/>
                                         <field name="quantity"/>
                                         <field name="price"/>

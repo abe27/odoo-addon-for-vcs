@@ -32,11 +32,17 @@
     'assets': {
         'web.assets_backend': [
             # 'approve_orders/static/src/css/bootstrap.min.css',
+            # 'https://cdn.jsdelivr.net/npm/daisyui@3.6.2/dist/full.css',
+            # 'https://cdn.tailwindcss.com',
             'approve_orders/static/src/js/tree_button.js',
         ],
         'web.assets_qweb': [
             'approve_orders/static/src/xml/tree_button.xml',
         ],
+        # 'web.assets_frontend': [
+        #     'https://cdn.jsdelivr.net/npm/daisyui@3.6.2/dist/full.css',
+        #     'https://cdn.tailwindcss.com'
+        # ],
     },
     "bootstrap": True,
     "application": True,
