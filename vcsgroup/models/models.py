@@ -24,7 +24,7 @@ class AccountBook(models.Model):
 
     account_book_id = fields.Char(size=8, required=True, string="ID")
     account_book_code = fields.Char(size=2, required=True, string="Code")
-    name = fields.Char(size=50, string="Name", required=True)
+    name = fields.Char(size=250, string="Name", required=True)
     description = fields.Text(string="Description")
     is_active = fields.Boolean(string="Active", default=False)
 
@@ -47,7 +47,7 @@ class Corporation(models.Model):
 
     corporation_id = fields.Char(size=8, required=True, string="ID")
     corporation_code = fields.Char(size=15, required=True, string="Code")
-    name = fields.Char(size=50, string="Name", required=True)
+    name = fields.Char(size=250, string="Name", required=True)
     description = fields.Text(string="Description")
     tax_id = fields.Char(size=25, string="Tax ID")
     address = fields.Text(string="Address")
@@ -71,7 +71,7 @@ class Customer(models.Model):
 
     customer_id = fields.Char(size=15,
                               required=True, string="ID")
-    name = fields.Char(size=50, string="Name", required=True)
+    name = fields.Char(size=250, string="Name", required=True)
     description = fields.Text(string="Description")
     tax_id = fields.Char(size=25, string="Tax ID")
     address = fields.Text(string="Address")
@@ -88,7 +88,7 @@ class Whs(models.Model):
                          required=True, string="ID")
     whs_code = fields.Char(size=15,
                            required=True, string="Code")
-    name = fields.Char(size=50, string="Name", required=True)
+    name = fields.Char(size=250, string="Name", required=True)
     description = fields.Text(string="Description")
     is_active = fields.Boolean(string="Active", default=False)
 
@@ -109,7 +109,7 @@ class Unit(models.Model):
                           required=True, string="ID")
     unit_code = fields.Char(size=15,
                             required=True, string="CODE")
-    name = fields.Char(size=50, string="Name", required=True)
+    name = fields.Char(size=250, string="Name", required=True)
     description = fields.Text(string="Description")
     is_active = fields.Boolean(string="Active", default=False)
 
@@ -120,7 +120,7 @@ class OrderType(models.Model):
 
     order_type_id = fields.Char(size=15,
                                 required=True, string="ID")
-    name = fields.Char(size=50, string="Name", required=True)
+    name = fields.Char(size=250, string="Name", required=True)
     description = fields.Text(string="Description")
     is_active = fields.Boolean(string="Active", default=False)
 
@@ -131,7 +131,7 @@ class ProductType(models.Model):
 
     product_type_id = fields.Char(size=1,
                                   required=True, string="ID")
-    name = fields.Char(size=50, string="Name", required=True)
+    name = fields.Char(size=250, string="Name", required=True)
     description = fields.Text(string="Description")
     is_active = fields.Boolean(string="Active", default=False)
 
@@ -142,7 +142,7 @@ class Product(models.Model):
 
     product_id = fields.Char(size=25,
                              required=True, string="ID")
-    name = fields.Char(size=50, string="Name", required=True)
+    name = fields.Char(size=250, string="Name", required=True)
     description = fields.Text(string="Description")
     is_active = fields.Boolean(string="Active", default=False)
 
@@ -154,7 +154,7 @@ class ProductGroup(models.Model):
     product_type_id = fields.Many2one(
         'vcsgroup.product_type', string="Product Type ID")
     product_id = fields.Many2one('vcsgroup.product', string="Product ID")
-    name = fields.Char(size=50, string="Name", required=True)
+    name = fields.Char(size=250, string="Name", required=True)
     unit_id = fields.Many2one('vcsgroup.unit', string="Unit ID")
     whs_id = fields.Many2one('vcsgroup.whs', string="WHS ID")
     price = fields.Float(string="Price", default="0.0")
@@ -177,7 +177,7 @@ class Booking(models.Model):
     booking_id = fields.Char(size=8,  required=True, string="ID")
     booking_code = fields.Char(size=15, required=True, string="CODE")
     prefix = fields.Char(size=15, string="Prefix")
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(size=250,string="Name", required=True)
     description = fields.Text(string="Description")
     from_whs_id = fields.Many2one('vcsgroup.whs', string="From WHS ID")
     to_whs_id = fields.Many2one('vcsgroup.whs', string="To WHS ID")

@@ -58,11 +58,17 @@ class OrderHeader(models.Model):
     @api.model
     def create(self, data):
         dte = datetime.strptime(data['order_date'], '%Y-%m-%d')
-        ctnRecord = self.env['approve_orders.order_header'].search_count([('name', 'like', f"ORD{dte.strftime('%Y%m')[3:]}")]) 
-        orderNo = f"ORD{dte.strftime('%Y%m')[3:]}{'{0:05}'.format(ctnRecord + 1)}"
+        book_prefix = "ORD"
+        if data['order_type_id']:
+            book = self.env['vcsgroup.booking'].search([('id', '=', data['order_type_id'])])
+            if len(book.prefix) > 1:
+                book_prefix = book.prefix
+
+        ctnRecord = self.env['approve_orders.order_header'].search_count([('name', 'like', f"{book_prefix}{dte.strftime('%Y%m')[3:]}")]) 
+        orderNo = f"{book_prefix}{dte.strftime('%Y%m')[3:]}{'{0:05}'.format(ctnRecord + 1)}"
         data['name'] = orderNo
         data['item_count'] = len(data['line_ids'])
-        data['order_step'] = 1
+        data['order_step'] = "1"
         data['is_approve'] = "0"
         result = super().create(data)
         return result

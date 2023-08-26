@@ -136,7 +136,7 @@ class VcsGroup(http.Controller):
 
             try:
                 id = http.request.env["vcsgroup.unit"].sudo().search(
-                    [('unit_id', '=', kw["unit_id"])])
+                    [('name', '=', kw["name"])])
                 if len(id) == 0:
                     obj = http.request.env["vcsgroup.unit"].sudo().create([
                         data])

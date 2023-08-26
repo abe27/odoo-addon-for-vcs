@@ -378,7 +378,7 @@
         <menuitem name="Account Booking" id="vcsgroup.menu_account_book" sequence="0" parent="vcsgroup.menu_master_data" action="vscgroup_account_book_action"/>
         <menuitem id="vcsgroup.menu_whs" name="Whouse" sequence="1" parent="vcsgroup.menu_master_data" action="vscgroup_whouse_action" />
         <menuitem id="vcsgroup.menu_unit" name="Unit" sequence="2" parent="vcsgroup.menu_master_data" action="vscgroup_unit_action" />
-        <menuitem id="vcsgroup.menu_order_step" name="Order Step" sequence="3" parent="vcsgroup.menu_master_data" action="vscgroup_order_step_action" />
+        <!-- <menuitem id="vcsgroup.menu_order_step" name="Order Step" sequence="3" parent="vcsgroup.menu_master_data" action="vscgroup_order_step_action" /> -->
         <menuitem id="vcsgroup.menu_order_type" name="Order Type" sequence="4" parent="vcsgroup.menu_master_data" action="vscgroup_order_type_action" />
         <menuitem id="vcsgroup.menu_product_type" name="Product Type" sequence="5" parent="vcsgroup.menu_master_data" action="vscgroup_product_type_action" />
         <menuitem id="vcsgroup.menu_product" name="Product" sequence="6" parent="vcsgroup.menu_master_data" action="vscgroup_product_action" />
