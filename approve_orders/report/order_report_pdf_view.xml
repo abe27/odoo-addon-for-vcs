@@ -6,7 +6,7 @@
                 <t t-call="web.external_layout">
                     <div class="page">
                         <h2>Report title</h2>
-                        <p>This object's name is:  <field name="o.id" /></p>
+                        <p>This object's name is <span t-field="o.name"/></p>
                     </div>
                 </t>
             </t>
