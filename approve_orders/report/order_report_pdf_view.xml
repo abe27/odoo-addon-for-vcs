@@ -2,12 +2,11 @@
 <odoo>
     <template id="order_report_pdf_view" name="order_report_pdf_view">
         <t t-call="web.html_container">
-            <t>
+            <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
                     <div class="page">
                         <h2>Report title</h2>
-                        <p>This object's name is
-                        </p>
+                        <p>This object's name is:  <field name="o.id" /></p>
                     </div>
                 </t>
             </t>

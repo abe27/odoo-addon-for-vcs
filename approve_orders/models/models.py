@@ -105,12 +105,12 @@ class OrderHeader(models.Model):
         print(f"btn click to approve")
 
     def action_call_report(self):
-        print(f"btn click to action_call_report")
+        print(self)
         return {
-            'type': 'ir.actions.report.xml',
-            'report_name': 'order_report_pdf_view',
+            'type': 'ir.actions.report',
+            'report_name': 'approve_orders.order_report_pdf_view',
             'report_type':"qweb-pdf",
-            'context': None
+            'docs': self
         }
 
 
