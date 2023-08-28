@@ -29,23 +29,10 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <!-- <div class="d-flex justify-content-end">
-                            <div class="p-2 bd-highlight">
-                                <button name="btn_approve" string="primary" class="btn-primary" icon="fa-sticky-note-o" type="action" />
-                            </div>
-                            <div class="p-2 bd-highlight">
-                                <button string="success" name="action_read_grabfood_api" class="btn-success" icon="fa-pencil" attrs="{'always_visible': True}" />
-                            </div>
-                            <div class="p-2 bd-highlight">
-                                <button string="danger" name="action_read_grabfood_api" class="btn-danger" icon="fa-print" attrs="{'always_visible': True}" />
-                            </div>
-                            <div class="p-2 bd-highlight">
-                                <button string="info" name="action_read_grabfood_api" class="btn-info" attrs="{'always_visible': True}" />
-                            </div>
-                        </div> -->
+                        <button string="Print Report" name="action_call_report" class="button is-success" icon="fa-print" type="object" />
                     </header>
                     <sheet>
-                        <group string="name" name="name">
+                        <group string="ข้อมูลทั่วไป" name="name">
                             <group>
                                 <field name="order_date" class="form-control" />
                             </group>

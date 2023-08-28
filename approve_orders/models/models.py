@@ -96,6 +96,9 @@ class OrderHeader(models.Model):
     def btn_approve(self):
         print(f"btn click to approve")
 
+    def action_call_report(self):
+        print(f"btn click to action_call_report")
+
 
 
 class OrderDetail(models.Model):

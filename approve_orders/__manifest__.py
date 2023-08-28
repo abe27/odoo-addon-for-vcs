@@ -31,7 +31,7 @@
     ],
     'assets': {
         'web.assets_backend': [
-            # 'approve_orders/static/src/css/bootstrap.min.css',
+            'approve_orders/static/src/css/bulma.min.css',
             # 'https://cdn.jsdelivr.net/npm/daisyui@3.6.2/dist/full.css',
             # 'https://cdn.tailwindcss.com',
             'approve_orders/static/src/js/tree_button.js',
