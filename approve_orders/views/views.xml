@@ -28,8 +28,8 @@
             <field name="model">approve_orders.order_header</field>
             <field name="arch" type="xml">
                 <form>
-                    <header>
-                        <button string="Print Report" name="action_call_report" class="button is-success" icon="fa-print" type="object" />
+                    <header class="d-flex d-flex justify-content-end">
+                        <button string="Print Report" name="action_call_report" class="btn-success" icon="fa-print" type="object" />
                     </header>
                     <sheet>
                         <group string="ข้อมูลทั่วไป" name="name">
@@ -37,7 +37,7 @@
                                 <field name="order_date" class="form-control" />
                             </group>
                             <group>
-                                <field name="order_type_id" class="form-control" />
+                                <field name="order_type_id" class="form-control custom_input" />
                             </group>
                             <group>
                                 <field name="name" class="text-danger" readonly="1"/>
@@ -49,7 +49,7 @@
                         <group name="name" string="ยอดรวม">
                             <field name="item_count" readonly="1"/>
                             <field name="vat_total" readonly="1"/>
-                            <field name="remark" class="form-control" />
+                            <field name="remark" class="form-control" rows="5" />
                         </group>
                         <group name="name" string="สถานะ">
                             <group>
@@ -127,17 +127,12 @@
 
         <!-- Top menu item -->
 
-        <menuitem name="Confirm Order" id="approve_orders.menu_root"/>
-
+        <menuitem name="Confirm Order" sequence="0" id="approve_orders.menu_root"/>
         <!-- menu categories -->
-
         <menuitem name="จัดการข้อมูล" id="approve_orders.menu_1" parent="approve_orders.menu_root"/>
         <!-- <menuitem name="Menu 2" id="approve_orders.menu_2" parent="approve_orders.menu_root"/> -->
-
         <!-- actions -->
-
         <menuitem name="รายการ Order" id="approve_orders.menu_1_list" parent="approve_orders.menu_1" action="approve_orders.order_header_action_window"/>
         <!-- <menuitem name="Server to list" id="approve_orders" parent="approve_orders.menu_2" action="approve_orders.action_server"/> -->
-
     </data>
 </odoo>
