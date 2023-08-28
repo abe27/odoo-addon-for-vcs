@@ -28,8 +28,8 @@ class OrderHeader(models.Model):
         string="Date", default=lambda self: fields.Date.today())
     name = fields.Char(size=15, string="Order No.")
     partner_id = fields.Many2one("res.partner", string="Partner")
-    item_count = fields.Integer(string="Item", default="0")
-    vat_total = fields.Float(string="Vat.", default="0.0")
+    item_count = fields.Integer(string="Item", compute="_update_totals", store=True)
+    vat_total = fields.Float(string="Vat.", compute="_update_totals", store=True)
     order_step = fields.Selection([("1", "None"), ("P", "Paid")], string="Step", default="1")
     remark = fields.Text(string="Remark", default="-")
     is_approve = fields.Selection([("0", "Open"), ("1", "In Process"), (
@@ -38,22 +38,16 @@ class OrderHeader(models.Model):
     line_ids = fields.One2many(
         "approve_orders.order_detail", "order_id", string="Order Detail")
     
+    @api.depends('line_ids')
+    def _update_totals(self):
+        for record in self:
+            record.item_count = len(record.line_ids)
+            vat = 0
+            for line_id in record.line_ids:
+                vat += (float(line_id['quantity']) * float(line_id['product_id']['price']))
 
-    # @api.multi
-    # def btn_show_dialog_box(self):
-    #     text = """Write your custom message here to show in dialog box"""
-    #     query ='delete from display_dialog_box'
-    #     self.env.cr.execute(query)
-    #     value = self.env['display.dialog.box'].sudo().create({'text':text})
-    #     return{
-    #         'type':'ir.actions.act_window',
-    #         'name':'Message',
-    #         'res_model':'display.dialog.box',
-    #         'view_type':'form',
-    #         'view_mode':'form',
-    #         'target':'new',
-    #         'res_id':value.id                
-    #     }
+            record.vat_total = vat
+
 
     @api.model
     def create(self, data):
@@ -78,7 +72,7 @@ class OrderHeader(models.Model):
         _id = []
         vatCount = 0
         for r in self.line_ids:
-            vatCount += float(r['product_id']['price'])
+            vatCount += (float(r['quantity']) * float(r['product_id']['price']))
             if len(_id) > 0:
                 try:
                     if _id.index(r['product_id']['id']):
@@ -91,10 +85,8 @@ class OrderHeader(models.Model):
             
             _id.append(r['product_id']['id'])
 
-        print(_id)
         self.vat_total = vatCount
         self.item_count = len(self.line_ids)
-        # self.line_ids = docs
 
     # @api.ondelete(self)
     # def ondelete_order_header(self):
@@ -115,9 +107,25 @@ class OrderDetail(models.Model):
     quantity = fields.Float(string="Quantity", default="1.0", required=True)
     price = fields.Float(string="Price", default="0.0")
     unit_id = fields.Many2one('vcsgroup.unit', string="Unit", required=True)
+    is_completed = fields.Boolean(string="IsCompleted", default=False)
+
+    @api.model
+    def create(self, data):
+        # print(data)
+        price = float(data["quantity"]) * float(data["price"])
+        data["price"] = price
+        result = super().create(data)
+        return result
 
     @api.onchange('product_id')
     def onchange_product_id(self):
-        self.price = float(self.product_id.price)
-        print(f"Price: {float(self.product_id.price)}")
-        print(f"Change product_id: {self.product_id.id}")
+        self.price = self.quantity * float(self.product_id.price)
+        # vatCount = 0
+        # for r in self.order_id.line_ids:
+        #     vatCount += float(r['product_id']['price'])
+
+        # # self.env['approve_orders.order_header']
+        # print(f"Quantity: {self.quantity} Price: {self.quantity * float(self.product_id.price)}")
+        # print(f"Order ID: {vatCount}")
+        # print(f"Price: {float(self.product_id.price)}")
+        # print(f"Change product_id: {self.product_id.id}")

@@ -29,7 +29,7 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <div class="d-flex justify-content-end">
+                        <!-- <div class="d-flex justify-content-end">
                             <div class="p-2 bd-highlight">
                                 <button name="btn_approve" string="primary" class="btn-primary" icon="fa-sticky-note-o" type="action" />
                             </div>
@@ -42,7 +42,7 @@
                             <div class="p-2 bd-highlight">
                                 <button string="info" name="action_read_grabfood_api" class="btn-info" attrs="{'always_visible': True}" />
                             </div>
-                        </div>
+                        </div> -->
                     </header>
                     <sheet>
                         <group string="name" name="name">
@@ -77,9 +77,15 @@
                         </group>
                         <notebook>
                             <page name="name" string="รายการสินค้า">
-                                <field name="line_ids">
-                                    <tree string="my Tree" editable="top">
-                                        <field name="product_id"/>
+                                <field name="line_ids" create="0" delete="0">
+                                    <!-- <tree create="0" delete="0">
+                                        <field name="product_id" />
+                                        <field name="quantity"/>
+                                        <field name="price"/>
+                                        <field name="unit_id"/>
+                                    </tree> -->
+                                    <tree>
+                                        <field name="product_id" />
                                         <field name="quantity"/>
                                         <field name="price"/>
                                         <field name="unit_id"/>
