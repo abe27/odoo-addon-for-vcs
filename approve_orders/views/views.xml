@@ -5,7 +5,7 @@
             <field name="name">Order Header</field>
             <field name="model">approve_orders.order_header</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree decoration-success="is_approve == '0'" decoration-info="is_approve == '1'" decoration-danger="is_approve == '2'" decoration-warning="is_approve == '3'">
                     <header>
                         <button name="confirm" string="Confirm" class="oe_highlight"/>
                         <button string="Read GrabFood API" name="action_read_grabfood_api" class="btn-primary" attrs="{'always_visible': True}" />
