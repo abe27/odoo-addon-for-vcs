@@ -120,6 +120,7 @@ class OrderHeader(models.Model):
 
     def action_call_confirm_order(self):
         print(f"Confirm {self.id}")
+        self.is_approve = "2"
         title = str("Successfully!")
         message = str("Your Action Run Successfully!")
         return {
