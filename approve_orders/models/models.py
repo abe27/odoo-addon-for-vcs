@@ -29,7 +29,8 @@ class OrderHeader(models.Model):
     order_date = fields.Date(
         string="Date", default=lambda self: fields.Date.today(), tracking=True)
     name = fields.Char(size=15, string="Order No.", tracking=True)
-    partner_id = fields.Many2one("res.partner", string="Partner", tracking=True)
+    partner_id = fields.Many2one(
+        "res.partner", string="Partner", tracking=True)
     item_count = fields.Integer(
         string="Item", compute="_update_totals", store=True, tracking=True)
     vat_total = fields.Float(
@@ -114,15 +115,23 @@ class OrderHeader(models.Model):
             'docs': self
         }
 
-
     def action_call_confirm_order(self):
         print(f"Confirm {self.id}")
-        pass
+        title = str("Successfully!")
+        message = str("Your Action Run Successfully!")
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': title,
+                'message': message,
+                'sticky': True,
+            }
+        }
 
     def action_call_confirm_reject(self):
         print(f"Rejected {self.id}")
-        pass
-
+        raise ValidationError("Rejected {self.id}")
 
 
 class OrderDetail(models.Model):
