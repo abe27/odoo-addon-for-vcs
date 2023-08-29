@@ -33,6 +33,9 @@
                         <button string="Print Report" name="action_call_report" class="btn-success" icon="fa-print" type="object" />
                     </header>
                     <sheet>
+                        <div class="oe_button_box">
+                            <button string="BTN Test" name="action_call_report" class="btn-primary" icon="fa-print" type="object" />
+                        </div>
                         <group string="ข้อมูลทั่วไป" name="name">
                             <group>
                                 <field name="order_date" class="form-control" />
