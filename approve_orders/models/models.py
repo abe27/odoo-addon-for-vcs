@@ -25,23 +25,23 @@ class OrderHeader(models.Model):
     _inherit = ['mail.thread']
 
     order_type_id = fields.Many2one(
-        'vcsgroup.booking', string="Order Type", required=True)
+        'vcsgroup.booking', string="Order Type", required=True, tracking=True)
     order_date = fields.Date(
-        string="Date", default=lambda self: fields.Date.today())
-    name = fields.Char(size=15, string="Order No.")
-    partner_id = fields.Many2one("res.partner", string="Partner")
+        string="Date", default=lambda self: fields.Date.today(), tracking=True)
+    name = fields.Char(size=15, string="Order No.", tracking=True)
+    partner_id = fields.Many2one("res.partner", string="Partner", tracking=True)
     item_count = fields.Integer(
-        string="Item", compute="_update_totals", store=True)
+        string="Item", compute="_update_totals", store=True, tracking=True)
     vat_total = fields.Float(
-        string="Vat.", compute="_update_totals", store=True)
+        string="Vat.", compute="_update_totals", store=True, tracking=True)
     order_step = fields.Selection(
-        [("1", "None"), ("P", "Paid")], string="Step", default="1")
+        [("1", "None"), ("P", "Paid")], string="Step", default="1", tracking=True)
     remark = fields.Text(string="Remark", default="-")
     is_approve = fields.Selection([("0", "Open"), ("1", "In Process"), (
-        "2", "Approved"), ("3", "Completed"), ("4", "Cancel")], string="Status", default="0")
-    is_sync = fields.Boolean(string="Is Sync", default=False)
+        "2", "Approved"), ("3", "Completed"), ("4", "Cancel")], string="Status", default="0", tracking=True)
+    is_sync = fields.Boolean(string="Is Sync", default=False, tracking=True)
     line_ids = fields.One2many(
-        "approve_orders.order_detail", "order_id", string="Order Detail")
+        "approve_orders.order_detail", "order_id", string="Order Detail", tracking=True)
 
     @api.depends('line_ids')
     def _update_totals(self):
@@ -110,7 +110,7 @@ class OrderHeader(models.Model):
         return {
             'type': 'ir.actions.report',
             'report_name': 'approve_orders.order_report_pdf_view',
-            'report_type':"qweb-pdf",
+            'report_type': "qweb-pdf",
             'docs': self
         }
 

@@ -69,11 +69,23 @@
                 <form>
                     <header class="d-flex d-flex justify-content-end">
                         <field name="is_approve" widget="statusbar"/>
-                        <button string="Print Report" name="action_call_report" class="btn-success" icon="fa-print" type="object" />
+                        <!-- <button string="Confirm Order" name="action_call_report" class="btn-info" icon="fa-print" type="object" />
+                        <button string="Cancel" name="action_call_report" class="btn-danger" icon="fa-print" type="object" />
+                        <button string="Print Report" name="action_call_report" class="btn-success" icon="fa-print" type="object" /> -->
                     </header>
                     <sheet>
                         <div class="oe_button_box">
-                            <button string="BTN Test" name="action_call_report" class="btn-primary" icon="fa-print" type="object" />
+                            <div class="d-flex flex-row-reverse bg-secondary">
+                                <div class="p-2">
+                                    <button string="Print Report" name="action_call_report" class="btn-success" icon="fa-print" type="object" />
+                                </div>
+                                <div class="p-2">
+                                    <button string="Confirm Order" name="action_call_report" class="btn-info" icon="fa-check-circle-o" type="object" />
+                                </div>
+                                <div class="p-2">
+                                    <button string="Reject" name="action_call_report" class="btn-danger" icon="fa-times" type="object" />
+                                </div>
+                            </div>
                         </div>
                         <group string="ข้อมูลทั่วไป" name="name">
                             <group>
@@ -124,6 +136,10 @@
                             </page>
                         </notebook>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" />
+                        <field name="message_ids" />
+                    </div>
                 </form>
             </field>
         </record>
