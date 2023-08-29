@@ -32,165 +32,150 @@
                         <t t-name="kanban-box">
                             <div class="oe_kanban_global_click">
                                 <div>
-                                    <strong class="">
-                                        <field name="name" />
-                                    </strong>
+                                    <field name="name" />
                                 </div>
                                 <div>
-                                    <span>Booking: 
-                                        <strong class="text-danger">
-                                            <field name="order_type_id" />
-                                        </strong>
-                                    </span>
+                                    <field name="order_type_id" />
                                 </div>
                                 <div>
-                                    <span>Date:    <strong class="text-danger">
-                                        <field name="order_date" />
-                                    </strong>
-                                </span>
+                                    <field name="order_date" />
+                                </div>
+                                <div>
+                                    <field name="item_count" />
+                                </div>
+                                <div>
+                                    <field name="vat_total" />
+                                </div>
+                                <div>
+                                    <field name="order_step" />
+                                </div>
+                                <div>
+                                    <field name="remark" />
+                                </div>
+                                <div>
+                                    <field name="is_approve" />
+                                </div>
                             </div>
-                            <div>
-                                    Item: <strong class="text-danger">
-                                <field name="item_count" />
-                            </strong>
-                                    Vat: <strong class="text-danger">
-                            <field name="vat_total" />
-                        </strong>
-                    </div>
-                    <div>
-                                    Step: <strong class="text-danger">
-                        <field name="order_step" />
-                    </strong>
-                                    Status:<strong class="text-danger">
-                    <field name="is_approve" />
-                </strong>
-            </div>
-            <div>
-                                    Remark:<strong class="text-danger">
-                <field name="remark" />
-            </strong>
-        </div>
-    </div>
-</t>
-</templates>
-</kanban>
-</field>
-</record>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
 
-<record id="order_header_form" model="ir.ui.view">
-<field name="name">Order Header</field>
-<field name="model">approve_orders.order_header</field>
-<field name="arch" type="xml">
-<form>
-<header class="d-flex d-flex justify-content-end">
-<field name="is_approve" widget="statusbar"/>
-<button string="Print Report" name="action_call_report" class="btn-success" icon="fa-print" type="object" />
-</header>
-<sheet>
-<div class="oe_button_box">
-    <button string="BTN Test" name="action_call_report" class="btn-primary" icon="fa-print" type="object" />
-</div>
-<group string="ข้อมูลทั่วไป" name="name">
-    <group>
-        <field name="order_date" class="form-control" />
-    </group>
-    <group>
-        <field name="order_type_id" class="form-control custom_input" />
-    </group>
-    <group>
-        <field name="name" class="text-danger" readonly="1"/>
-    </group>
-    <group>
-        <field name="partner_id" class="form-control"/>
-    </group>
-</group>
-<group name="name" string="ยอดรวม">
-    <field name="item_count" readonly="1"/>
-    <field name="vat_total" readonly="1"/>
-    <field name="remark" class="form-control" rows="5" />
-</group>
-<group name="name" string="สถานะ">
-    <group>
-        <field name="order_step" readonly="1"/>
-    </group>
-    <group>
-        <field name="is_approve" readonly="1"/>
-    </group>
-    <group>
-        <field name="is_sync" readonly="1"/>
-    </group>
-</group>
-<notebook>
-    <page name="name" string="รายการสินค้า">
-        <field name="line_ids" create="0" delete="0">
-            <!-- <tree create="0" delete="0">
+        <record id="order_header_form" model="ir.ui.view">
+            <field name="name">Order Header</field>
+            <field name="model">approve_orders.order_header</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header class="d-flex d-flex justify-content-end">
+                        <field name="is_approve" widget="statusbar"/>
+                        <button string="Print Report" name="action_call_report" class="btn-success" icon="fa-print" type="object" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box">
+                            <button string="BTN Test" name="action_call_report" class="btn-primary" icon="fa-print" type="object" />
+                        </div>
+                        <group string="ข้อมูลทั่วไป" name="name">
+                            <group>
+                                <field name="order_date" class="form-control" />
+                            </group>
+                            <group>
+                                <field name="order_type_id" class="form-control custom_input" />
+                            </group>
+                            <group>
+                                <field name="name" class="text-danger" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="partner_id" class="form-control"/>
+                            </group>
+                        </group>
+                        <group name="name" string="ยอดรวม">
+                            <field name="item_count" readonly="1"/>
+                            <field name="vat_total" readonly="1"/>
+                            <field name="remark" class="form-control" rows="5" />
+                        </group>
+                        <group name="name" string="สถานะ">
+                            <group>
+                                <field name="order_step" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="is_approve" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="is_sync" readonly="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="name" string="รายการสินค้า">
+                                <field name="line_ids" create="0" delete="0">
+                                    <!-- <tree create="0" delete="0">
                                         <field name="product_id" />
                                         <field name="quantity"/>
                                         <field name="price"/>
                                         <field name="unit_id"/>
                                     </tree> -->
-            <tree>
-                <field name="product_id" />
-                <field name="quantity"/>
-                <field name="price"/>
-                <field name="unit_id"/>
-            </tree>
-        </field>
-    </page>
-</notebook>
-</sheet>
-</form>
-</field>
-</record>
+                                    <tree>
+                                        <field name="product_id" />
+                                        <field name="quantity"/>
+                                        <field name="price"/>
+                                        <field name="unit_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
-<record model="ir.actions.act_window" id="approve_orders.order_header_action_window">
-<field name="name">Order List</field>
-<field name="res_model">approve_orders.order_header</field>
-<field name="view_mode">tree,form,kanban</field>
-</record>
+        <record model="ir.actions.act_window" id="approve_orders.order_header_action_window">
+            <field name="name">Order List</field>
+            <field name="res_model">approve_orders.order_header</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
 
-<!-- Order Header -->
+        <!-- Order Header -->
 
-<!-- Order Detail -->
-<record id="order_detail_list" model="ir.ui.view">
-<field name="name">Order Detail</field>
-<field name="model">approve_orders.order_detail</field>
-<field name="arch" type="xml">
-<tree string="Test">
-<field name="order_id" />
-<field name="product_id" />
-<field name="quantity" />
-<field name="unit_id" />
-</tree>
-</field>
-</record>
+        <!-- Order Detail -->
+        <record id="order_detail_list" model="ir.ui.view">
+            <field name="name">Order Detail</field>
+            <field name="model">approve_orders.order_detail</field>
+            <field name="arch" type="xml">
+                <tree string="Test">
+                    <field name="order_id" />
+                    <field name="product_id" />
+                    <field name="quantity" />
+                    <field name="unit_id" />
+                </tree>
+            </field>
+        </record>
 
-<record id="order_detail_form" model="ir.ui.view">
-<field name="name">Order Detail</field>
-<field name="model">approve_orders.order_detail</field>
-<field name="arch" type="xml">
-<form>
-<sheet>
-<group>
-    <field name="product_id" />
-</group>
-<group>
-    <field name="quantity" />
-    <field name="unit_id" />
-</group>
-</sheet>
-</form>
-</field>
-</record>
+        <record id="order_detail_form" model="ir.ui.view">
+            <field name="name">Order Detail</field>
+            <field name="model">approve_orders.order_detail</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="product_id" />
+                        </group>
+                        <group>
+                            <field name="quantity" />
+                            <field name="unit_id" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
-<!-- Top menu item -->
+        <!-- Top menu item -->
 
-<menuitem name="Confirm Order" sequence="0" id="approve_orders.menu_root"/>
-<!-- menu categories -->
-<menuitem name="จัดการข้อมูล" id="approve_orders.menu_1" parent="approve_orders.menu_root"/>
-<!-- <menuitem name="Menu 2" id="approve_orders.menu_2" parent="approve_orders.menu_root"/> -->
-<!-- actions -->
-<menuitem name="รายการ Order" id="approve_orders.menu_1_list" parent="approve_orders.menu_1" action="approve_orders.order_header_action_window"/>
-<!-- <menuitem name="Server to list" id="approve_orders" parent="approve_orders.menu_2" action="approve_orders.action_server"/> -->
-</data>
+        <menuitem name="Confirm Order" sequence="0" id="approve_orders.menu_root"/>
+        <!-- menu categories -->
+        <menuitem name="จัดการข้อมูล" id="approve_orders.menu_1" parent="approve_orders.menu_root"/>
+        <!-- <menuitem name="Menu 2" id="approve_orders.menu_2" parent="approve_orders.menu_root"/> -->
+        <!-- actions -->
+        <menuitem name="รายการ Order" id="approve_orders.menu_1_list" parent="approve_orders.menu_1" action="approve_orders.order_header_action_window"/>
+        <!-- <menuitem name="Server to list" id="approve_orders" parent="approve_orders.menu_2" action="approve_orders.action_server"/> -->
+    </data>
 </odoo>

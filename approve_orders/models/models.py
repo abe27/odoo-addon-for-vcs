@@ -22,6 +22,7 @@ from odoo.exceptions import ValidationError
 class OrderHeader(models.Model):
     _name = 'approve_orders.order_header'
     _description = 'approve_orders.order_header'
+    _inherit = ['mail.thread']
 
     order_type_id = fields.Many2one(
         'vcsgroup.booking', string="Order Type", required=True)
