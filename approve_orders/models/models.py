@@ -37,7 +37,7 @@ class OrderHeader(models.Model):
         string="Vat.", compute="_update_totals", store=True, tracking=True)
     order_step = fields.Selection(
         [("1", "None"), ("P", "Paid")], string="Step", default="1", tracking=True)
-    remark = fields.Text(string="Remark", default="-")
+    remark = fields.Text(string="Remark", default="-", tracking=True)
     is_approve = fields.Selection([("0", "Open"), ("1", "In Process"), (
         "2", "Approved"), ("3", "Completed"), ("4", "Cancel")], string="Status", default="0", tracking=True)
     is_sync = fields.Boolean(string="Is Sync", default=False, tracking=True)
@@ -138,13 +138,13 @@ class OrderDetail(models.Model):
     _name = 'approve_orders.order_detail'
     _description = 'approve_orders.order_detail'
 
-    order_id = fields.Many2one('approve_orders.order_header', string="Order")
+    order_id = fields.Many2one('approve_orders.order_header', string="Order", tracking=True)
     product_id = fields.Many2one(
-        'vcsgroup.product_group', string="Product", required=True)
-    quantity = fields.Float(string="Quantity", default="1.0", required=True)
-    price = fields.Float(string="Price", default="0.0")
-    unit_id = fields.Many2one('vcsgroup.unit', string="Unit", required=True)
-    is_completed = fields.Boolean(string="IsCompleted", default=False)
+        'vcsgroup.product_group', string="Product", required=True, tracking=True)
+    quantity = fields.Float(string="Quantity", default="1.0", required=True, tracking=True)
+    price = fields.Float(string="Price", default="0.0", tracking=True)
+    unit_id = fields.Many2one('vcsgroup.unit', string="Unit", required=True, tracking=True)
+    is_completed = fields.Boolean(string="IsCompleted", default=False, tracking=True)
 
     @api.model
     def create(self, data):
