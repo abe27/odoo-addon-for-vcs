@@ -129,7 +129,6 @@ class OrderHeader(models.Model):
             'type': 'ir.actions.client',
             'tag': 'display_notification',
             'params': {
-                'type': 'info',
                 'title': title,
                 'message': message,
                 'sticky': False,
@@ -150,7 +149,6 @@ class OrderHeader(models.Model):
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
                 'params': {
-                    'type': 'error',
                     'title': title,
                     'message': message,
                     'sticky': False,
