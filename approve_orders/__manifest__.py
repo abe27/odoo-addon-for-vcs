@@ -17,7 +17,7 @@
     'version': '0.1',  # version คือ เวอร์ชันของโมดูล
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'vcsgroup', 'web'],
+    'depends': ['base', 'vcsgroup', 'web', 'barcode'],
 
     # always loaded
     'data': [
