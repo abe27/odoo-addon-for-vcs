@@ -1,6 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
     <template id="order_report_pdf_view" name="order_report_pdf_view">
+        <xpath expr="." position="inside">
+            <link href="/approve_orders/static/src/css/bulma.min.css" rel="stylesheet" type="text/css"/>
+        </xpath>
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
@@ -9,6 +12,42 @@
                         <p>This object's name is <span t-field="o.name"/>
                         </p>
                         <img t-att-src="'/report/barcode/QR/'+o.name" style="height:150px; width:150px;" alt="QR Code"/>
+                    </div>
+                    <div class="page">
+                        <!-- <h2>Description</h2>
+                        <ul>
+                            <li t-foreach="o.line_ids" t-as="i">Test: <span t-field="i.product_id.name"/></li>
+                        </ul> -->
+                        <div class="container mt-3">
+                            <h2>Basic Table</h2>
+                            <p>The .table class adds basic styling (light padding and horizontal dividers) to a table:</p>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Name</th>
+                                        <th>Qty.</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="o.line_ids" t-as="i">
+                                        <td>
+                                            <span t-field="i.product_id.product_id.product_id"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="i.product_id.product_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="i.quantity"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="i.price"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </t>
             </t>
