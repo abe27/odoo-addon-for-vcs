@@ -122,7 +122,7 @@ class OrderHeader(models.Model):
         print(f"Confirm {self.id}")
         self.is_approve = "2"
         title = str("Successfully!")
-        message = str("Your Action Run Successfully!")
+        message = str(f"Your Action Confirm {self.name} Successfully!")
         return {
             'type': 'ir.actions.client',
             'tag': 'display_notification',
@@ -137,6 +137,17 @@ class OrderHeader(models.Model):
         try:
             print(f"Rejected {self.id}")
             self.is_approve = "4"
+            title = str("Successfully!")
+            message = str(f"Your Action Cancel {self.name} Successfully!")
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': title,
+                    'message': message,
+                    'sticky': True,
+                }
+            }
 
         except Exception as ex:
             raise ValidationError(f"Rejected {self.id} ex: {str(ex)}")
@@ -147,13 +158,13 @@ class OrderDetail(models.Model):
     _name = 'approve_orders.order_detail'
     _description = 'approve_orders.order_detail'
 
-    order_id = fields.Many2one('approve_orders.order_header', string="Order", tracking=True)
+    order_id = fields.Many2one('approve_orders.order_header', string="Order")
     product_id = fields.Many2one(
-        'vcsgroup.product_group', string="Product", required=True, tracking=True)
-    quantity = fields.Float(string="Quantity", default="1.0", required=True, tracking=True)
-    price = fields.Float(string="Price", default="0.0", tracking=True)
-    unit_id = fields.Many2one('vcsgroup.unit', string="Unit", required=True, tracking=True)
-    is_completed = fields.Boolean(string="IsCompleted", default=False, tracking=True)
+        'vcsgroup.product_group', string="Product", required=True)
+    quantity = fields.Float(string="Quantity", default="1.0", required=True)
+    price = fields.Float(string="Price", default="0.0")
+    unit_id = fields.Many2one('vcsgroup.unit', string="Unit", required=True)
+    is_completed = fields.Boolean(string="IsCompleted", default=False)
 
     @api.model
     def create(self, data):
