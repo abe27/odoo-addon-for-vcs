@@ -7,6 +7,7 @@
                     <div class="page">
                         <h2>Report title</h2>
                         <p>This object's name is <span t-field="o.name"/></p>
+                        <img t-att-src="'/report/barcode/QR/%s' % 'My text in qr code'"/>
                     </div>
                 </t>
             </t>
