@@ -29,6 +29,7 @@
             <field name="arch" type="xml">
                 <form>
                     <header class="d-flex d-flex justify-content-end">
+                        <field name="is_approve" widget="statusbar"/>
                         <button string="Print Report" name="action_call_report" class="btn-success" icon="fa-print" type="object" />
                     </header>
                     <sheet>
