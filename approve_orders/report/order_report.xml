@@ -3,7 +3,7 @@
     <data>
 
         <record id="action_order_report" model="ir.actions.report">
-            <field name="name">General Order Report</field>
+            <field name="name">Order Report</field>
             <field name="model">approve_orders.order_header</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">approve_orders.order_report_pdf_view</field>

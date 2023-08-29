@@ -41,6 +41,7 @@ class OrderHeader(models.Model):
     is_approve = fields.Selection([("0", "Open"), ("1", "In Process"), (
         "2", "Approved"), ("3", "Completed"), ("4", "Cancel")], string="Status", default="0", tracking=True)
     is_sync = fields.Boolean(string="Is Sync", default=False, tracking=True)
+    is_report = fields.Boolean(string="Is Report", default=False, tracking=True)
     line_ids = fields.One2many(
         "approve_orders.order_detail", "order_id", string="Order Detail", tracking=True)
 
@@ -108,10 +109,12 @@ class OrderHeader(models.Model):
 
     def action_call_report(self):
         # print(self)
+        self.is_report = True
         return {
             'type': 'ir.actions.report',
             'report_name': 'approve_orders.order_report_pdf_view',
             'report_type': "qweb-pdf",
+            'file_name': self.name,
             'docs': self
         }
 
@@ -130,8 +133,13 @@ class OrderHeader(models.Model):
         }
 
     def action_call_confirm_reject(self):
-        print(f"Rejected {self.id}")
-        raise ValidationError("Rejected {self.id}")
+        try:
+            print(f"Rejected {self.id}")
+            self.is_approve = "4"
+
+        except Exception as ex:
+            raise ValidationError(f"Rejected {self.id} ex: {str(ex)}")
+
 
 
 class OrderDetail(models.Model):
