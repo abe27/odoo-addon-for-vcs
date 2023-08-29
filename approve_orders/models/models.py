@@ -41,7 +41,8 @@ class OrderHeader(models.Model):
     is_approve = fields.Selection([("0", "Open"), ("1", "In Process"), (
         "2", "Approved"), ("3", "Completed"), ("4", "Cancel")], string="Status", default="0", tracking=True)
     is_sync = fields.Boolean(string="Is Sync", default=False, tracking=True)
-    is_report = fields.Boolean(string="Is Report", default=False, tracking=True)
+    is_report = fields.Boolean(
+        string="Is Report", default=False, tracking=True)
     line_ids = fields.One2many(
         "approve_orders.order_detail", "order_id", string="Order Detail", tracking=True)
 
@@ -119,7 +120,8 @@ class OrderHeader(models.Model):
         }
 
     def action_call_confirm_order(self):
-        print(f"Confirm {self.id}")
+        # print(f"Confirm {self.id}")
+        # self.write({'is_approve': '2'})
         self.is_approve = "2"
         title = str("Successfully!")
         message = str(f"Your Action Confirm {self.name} Successfully!")
@@ -127,9 +129,14 @@ class OrderHeader(models.Model):
             'type': 'ir.actions.client',
             'tag': 'display_notification',
             'params': {
+                'type': 'info',
                 'title': title,
                 'message': message,
-                'sticky': True,
+                'sticky': False,
+                'fadeout': 'slow',
+                'next': {
+                    'type': 'ir.actions.act_window_close',
+                }
             }
         }
 
@@ -143,15 +150,19 @@ class OrderHeader(models.Model):
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
                 'params': {
+                    'type': 'error',
                     'title': title,
                     'message': message,
-                    'sticky': True,
+                    'sticky': False,
+                    'fadeout': 'slow',
+                    'next': {
+                        'type': 'ir.actions.act_window_close',
+                    }
                 }
             }
 
         except Exception as ex:
             raise ValidationError(f"Rejected {self.id} ex: {str(ex)}")
-
 
 
 class OrderDetail(models.Model):
