@@ -80,10 +80,10 @@
                                     <button string="Print Report" name="action_call_report" class="btn-success" icon="fa-print" type="object" />
                                 </div>
                                 <div class="p-2">
-                                    <button string="Confirm Order" name="action_call_report" class="btn-info" icon="fa-check-circle-o" type="object" />
+                                    <button string="Confirm Order" name="action_call_confirm_order" confirm="Do you want to confirm this order?" class="btn-info" icon="fa-check-circle-o" type="object" />
                                 </div>
                                 <div class="p-2">
-                                    <button string="Reject" name="action_call_report" class="btn-danger" icon="fa-times" type="object" />
+                                    <button string="Reject" name="action_call_confirm_reject" confirm="Do you want to decline this order?" class="btn-danger" icon="fa-times" type="object" />
                                 </div>
                             </div>
                         </div>

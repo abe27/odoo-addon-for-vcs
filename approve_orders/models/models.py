@@ -106,13 +106,23 @@ class OrderHeader(models.Model):
         print(f"btn click to approve")
 
     def action_call_report(self):
-        print(self)
+        # print(self)
         return {
             'type': 'ir.actions.report',
             'report_name': 'approve_orders.order_report_pdf_view',
             'report_type': "qweb-pdf",
             'docs': self
         }
+
+
+    def action_call_confirm_order(self):
+        print(f"Confirm {self.id}")
+        pass
+
+    def action_call_confirm_reject(self):
+        print(f"Rejected {self.id}")
+        pass
+
 
 
 class OrderDetail(models.Model):
