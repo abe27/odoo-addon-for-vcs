@@ -370,7 +370,7 @@
 
 
         <!-- Top menu item -->
-        <menuitem name="จัดการข้อมูล VCS Master Data" id="vcsgroup.menu_root"/>
+        <menuitem name="จัดการข้อมูล VCS Master Data" id="vcsgroup.menu_root" />
         <!-- menu categories -->
         <menuitem name="จัดการข้อมูล" id="vcsgroup.menu_master_data" parent="vcsgroup.menu_root"/>
         <menuitem name="Menu 2" id="vcsgroup.menu_2" parent="vcsgroup.menu_root"/>
